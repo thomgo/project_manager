@@ -11,5 +11,7 @@ include "header.php";
   Testons pour voir si cette relations marchent
 </p>
 
+<?php var_dump($data); ?>
+
 
 <?php include "footer.php"; ?>
