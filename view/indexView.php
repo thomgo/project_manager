@@ -11,7 +11,17 @@ include "header.php";
   Testons pour voir si cette relations marchent
 </p>
 
-<?php var_dump($data); ?>
+<?php
+
+foreach ($data as $value) {
+  echo  $value['name'] . " " . $value['age'];
+}
+
+echo "<p>" . $client['name'] . "<p>";
+
+var_dump($row);
+
+ ?>
 
 
 <?php include "footer.php"; ?>
