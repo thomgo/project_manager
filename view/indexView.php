@@ -21,6 +21,10 @@ echo "<p>" . $client['name'] . "<p>";
 
 var_dump($row);
 
+$form->formStart();
+$form->formInput();
+$form->formEnd();
+
  ?>
 
 

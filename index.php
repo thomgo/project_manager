@@ -1,6 +1,7 @@
 <?php
 
 require_once "model/dataManager.php";
+require_once "forms/form.php";
 
 $dataManager = new dataManager;
 
@@ -10,7 +11,7 @@ $client = $dataManager->getById(1);
 
 $row = $dataManager->getByRow();
 
-$dataManager->deleteAll();
+$form = new form;
 
 include "view/indexView.php";
 

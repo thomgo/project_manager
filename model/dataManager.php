@@ -5,10 +5,6 @@ require_once 'dataBase.php';
 // A sample class to manage the crud of an entity
 class dataManager extends dataBase {
 
-  public function test($value) {
-    return $value;
-  }
-
 // Get data functions
   public function getAll() {
     $query = $this->getPDO()->query("SELECT * FROM client" );
@@ -29,10 +25,28 @@ class dataManager extends dataBase {
     return $query;
   }
 
+// Delete functions
   public function deleteAll() {
     $query = $this->getPDO()->query("DELETE FROM client");
   }
 
+  public function deleteById($id) {
+    $query = $this->getPDO()->prepare('DELETE FROM client WHERE id= ?' );
+    $query->execute(array($id));
+  }
+
+  // Insert functions
+  public function insertInto($name, $age) {
+    $query = $this->getPDO()->prepare("INSERT INTO client(name, age) VALUES (?, ?)");
+    $query->execute(array($name, $age));
+  }
+
+  // Update function
+  public function updateTable($name, $age, $id) {
+    $query = $this->getPDO()->prepare("UPDATE client SET name=?, age=? WHERE id=?");
+    $query->execute(array($name, $age, $id));
+    header("Refresh:0");
+  }
 }
 
  ?>
