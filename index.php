@@ -13,6 +13,10 @@ $row = $dataManager->getByRow();
 
 $form = new form;
 
+if (isset($_POST['firstname'])) {
+  echo "string2";
+}
+
 include "view/indexView.php";
 
 ?>

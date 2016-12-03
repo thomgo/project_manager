@@ -21,8 +21,17 @@ echo "<p>" . $client['name'] . "<p>";
 
 var_dump($row);
 
-$form->formStart();
-$form->formInput();
+$form->formStart("index.php", "classtest");
+  $form->textInput("textee", "votre text", "required");
+  $form->numberInput("numb", "votre nombre");
+  $form->passwordInput("pass", "votre pass", "required");
+  $form->radioInput("rad", "les radios", ["choix1", "choix2", "choix7"]);
+  $form->checkboxInput("sports", "Vos sports", ["foot", "basket", "tennis"]);
+  $form->fileInput("fil", "votre fichier", "required");
+  $form->emailInput("numb", "votre email", 'Required');
+  $form->textArea("area", "votre message", 'Required');
+  $form->selectField("selec", "Votre choix", ["choix1", "choix2", "choix3"]);
+  $form->submitButton("vendre");
 $form->formEnd();
 
  ?>
