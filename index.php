@@ -5,7 +5,7 @@ require_once "forms/form.php";
 
 $dataManager = new dataManager;
 
-$data = $dataManager->getAll();
+$data = $dataManager->getAll("client");
 
 $client = $dataManager->getById(1);
 

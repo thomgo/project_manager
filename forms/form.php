@@ -1,6 +1,12 @@
 <?php
 
+// This class is a form builder that aims to spare you a lot of time parametring your forms
+// Use the different functions below to display a form in your html via a form object
+
 class form {
+
+// The function to add the first form tag, first specify the file to send the data as a string
+// You can also add a class as a string but this is optional
 
   public function formStart($action, $class=false) {
     if ($class) {
@@ -10,6 +16,12 @@ class form {
       echo '<form action=' . $action.  ' method="post">';
     }
   }
+
+// Now come all the functions to display inputs with different types
+// First you always specifiy the name as a string if you want to work tables of data
+// Then you specifiy the label as a string
+// If the input has multiple choices you set them in a table
+// At last you can specify as a string if the field is required but it is optional
 
   public function textInput($name, $label, $required=false) {
     if ($required && $required = "Required" || "required") {
@@ -81,6 +93,42 @@ class form {
     }
   }
 
+  public function searchInput($name, $label, $required=false) {
+    if ($required && $required = "Required" || "required") {
+      echo '<label>' . $label . '<input type="search" name=' . $name . ' required ></label>';
+    }
+    else {
+      echo '<label>' . $label . '<input type="search" name=' . $name . '></label>';
+    }
+  }
+
+  public function urlInput($name, $label, $required=false) {
+    if ($required && $required = "Required" || "required") {
+      echo '<label>' . $label . '<input type="url" name=' . $name . ' required ></label>';
+    }
+    else {
+      echo '<label>' . $label . '<input type="url" name=' . $name . '></label>';
+    }
+  }
+
+  public function telInput($name, $label, $required=false) {
+    if ($required && $required = "Required" || "required") {
+      echo '<label>' . $label . '<input type="tel" name=' . $name . ' required ></label>';
+    }
+    else {
+      echo '<label>' . $label . '<input type="tel" name=' . $name . '></label>';
+    }
+  }
+
+  public function colorInput($name, $label, $required=false) {
+    if ($required && $required = "Required" || "required") {
+      echo '<label>' . $label . '<input type="color" name=' . $name . ' required ></label>';
+    }
+    else {
+      echo '<label>' . $label . '<input type="color" name=' . $name . '></label>';
+    }
+  }
+
   public function emailInput($name, $label, $required=false) {
     if ($required && $required = "Required" || "required") {
       echo '<label>' . $label . '<input type="email" name=' . $name . ' required ></label>';
@@ -89,6 +137,8 @@ class form {
       echo '<label>' . $label . '<input type="email" name=' . $name . '></label>';
     }
   }
+
+// Functions to display a textarea and a select fields. Work as the input functions
 
   public function textArea($name, $label, $required=false) {
     if ($required && $required = "Required" || "required") {
@@ -116,9 +166,13 @@ class form {
     }
   }
 
+// Function to display a submit button, the value (string type) is what appears on the button
+
   public function submitButton($value) {
-    echo '<input type="submit" value=' . $value .'>';
+    echo '<input type="submit" value= ' . $value .'>';
   }
+
+// Function to display the closing form tag
 
   public function formEnd() {
     echo '</form>';

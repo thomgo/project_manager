@@ -21,6 +21,7 @@ echo "<p>" . $client['name'] . "<p>";
 
 var_dump($row);
 
+
 $form->formStart("index.php", "classtest");
   $form->textInput("textee", "votre text", "required");
   $form->numberInput("numb", "votre nombre");
@@ -31,6 +32,7 @@ $form->formStart("index.php", "classtest");
   $form->emailInput("numb", "votre email", 'Required');
   $form->textArea("area", "votre message", 'Required');
   $form->selectField("selec", "Votre choix", ["choix1", "choix2", "choix3"]);
+  $form->colorInput("col", "choisissez votre couleur");
   $form->submitButton("vendre");
 $form->formEnd();
 
