@@ -13,10 +13,15 @@ class dataManager extends dataBase {
     return $query;
   }
 
-  public function getById($id) {
-    $query = $this->getPDO()->prepare('SELECT * FROM client WHERE id= ?' );
-    $query->execute(array($id));
-    $query = $query->fetch();
+  public function getWhere($table, $assoArray) {
+    foreach ($assoArray as $key => $value) {
+      $parameter = $key;
+      $val = $value;
+    }
+    $request = 'SELECT * FROM' . " " . $table . " " . 'WHERE ' . " " . $parameter . '= ?';
+    $query = $this->getPDO()->prepare($request);
+    $query->execute(array($val));
+    $query = $query->fetchAll();
     return $query;
   }
 

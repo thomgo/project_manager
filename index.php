@@ -11,6 +11,8 @@ $client = $dataManager->getById(1);
 
 $row = $dataManager->getByRow();
 
+$test = $dataManager->getWhere("client", ["age"=>32]);
+
 $form = new form;
 
 if (isset($_POST['firstname'])) {

@@ -19,7 +19,11 @@ foreach ($data as $value) {
 
 echo "<p>" . $client['name'] . "<p>";
 
-var_dump($row);
+var_dump($test);
+
+foreach ($test as $client) {
+  echo $client['name'] . " " . $client['age'];
+}
 
 
 $form->formStart("index.php", "classtest");
