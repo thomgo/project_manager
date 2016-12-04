@@ -6,8 +6,9 @@ require_once 'dataBase.php';
 class dataManager extends dataBase {
 
 // Get data functions
-  public function getAll() {
-    $query = $this->getPDO()->query("SELECT * FROM client" );
+  public function getAll($table) {
+    $request = 'SELECT * FROM' . " " . $table;
+    $query = $this->getPDO()->query($request);
     $query = $query->fetchAll();
     return $query;
   }
@@ -47,6 +48,7 @@ class dataManager extends dataBase {
     $query->execute(array($name, $age, $id));
     header("Refresh:0");
   }
+
 }
 
  ?>
