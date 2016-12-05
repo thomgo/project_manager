@@ -7,9 +7,7 @@ $dataManager = new dataManager;
 
 $data = $dataManager->getAll("client");
 
-$client = $dataManager->getById(1);
-
-$row = $dataManager->getByRow();
+$row = $dataManager->getByRow(['name', "age", 'id'], "client");
 
 $test = $dataManager->getWhere("client", ["age"=>32]);
 

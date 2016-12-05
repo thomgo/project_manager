@@ -17,9 +17,9 @@ foreach ($data as $value) {
   echo  $value['name'] . " " . $value['age'];
 }
 
-echo "<p>" . $client['name'] . "<p>";
-
-var_dump($test);
+foreach ($row as $client) {
+  echo "<p>" . $client['name'] . $client['age'] . " " . $client['id'] . "</p>";
+}
 
 foreach ($test as $client) {
   echo $client['name'] . " " . $client['age'];

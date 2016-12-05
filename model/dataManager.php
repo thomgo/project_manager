@@ -25,8 +25,19 @@ class dataManager extends dataBase {
     return $query;
   }
 
-  public function getByRow() {
-    $query = $this->getPDO()->query("SELECT name, age FROM client" );
+  public function getByRow($rows, $table) {
+    $request = 'SELECT ';
+    foreach ($rows as $row) {
+      if ($row != end($rows)) {
+        $request .= " " . $row . ",";
+      }
+      else {
+        $request .= " " . $row;
+      }
+    }
+    $request .= ' FROM' . " " . $table;
+    // $query = $this->getPDO()->query("SELECT name, age FROM client" );
+    $query = $this->getPDO()->query($request);
     $query = $query->fetchAll();
     return $query;
   }
