@@ -11,6 +11,9 @@ $row = $dataManager->getByRow(['name', "age", 'id'], "client");
 
 $test = $dataManager->getWhere("client", ["age"=>32]);
 
+$dataManager->deleteWhere("client", ["name"=>"jean"]);
+
+
 $form = new form;
 
 if (isset($_POST['firstname'])) {

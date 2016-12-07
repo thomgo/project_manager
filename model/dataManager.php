@@ -43,13 +43,20 @@ class dataManager extends dataBase {
   }
 
 // Delete functions
-  public function deleteAll() {
-    $query = $this->getPDO()->query("DELETE FROM client");
+  public function deleteAll($table) {
+    $request = 'DELETE FROM' . " " . $table;
+    $query = $this->getPDO()->query($request);
   }
 
-  public function deleteById($id) {
-    $query = $this->getPDO()->prepare('DELETE FROM client WHERE id= ?' );
-    $query->execute(array($id));
+  public function deleteWhere($table, $assoArray) {
+    foreach ($assoArray as $key => $value) {
+      $parameter = $key;
+      $val = $value;
+    }
+
+    $request = 'DELETE FROM' . " " . $table . " " . 'WHERE ' . " " . $parameter . '=?';
+    $query = $this->getPDO()->prepare($request);
+    $query->execute(array($val));
   }
 
   // Insert functions
