@@ -5,13 +5,13 @@ require_once "forms/form.php";
 
 $dataManager = new dataManager;
 
-$data = $dataManager->getAll("client");
-
-$row = $dataManager->getByRow(['name', "age", 'id'], "client");
-
-$test = $dataManager->getWhere("client", ["age"=>32]);
-
-$dataManager->deleteWhere("client", ["name"=>"jean"]);
+// $data = $dataManager->getAll("client");
+//
+// $row = $dataManager->getByRow(['name', "age", 'id'], "client");
+//
+// $test = $dataManager->getWhere("client", ["age"=>32]);
+//
+// $dataManager->insertInto("projects", ["title"=>"jijiji", "text"=>"jojojo"]);
 
 
 $form = new form;

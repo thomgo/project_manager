@@ -36,7 +36,6 @@ class dataManager extends dataBase {
       }
     }
     $request .= ' FROM' . " " . $table;
-    // $query = $this->getPDO()->query("SELECT name, age FROM client" );
     $query = $this->getPDO()->query($request);
     $query = $query->fetchAll();
     return $query;
@@ -59,10 +58,33 @@ class dataManager extends dataBase {
     $query->execute(array($val));
   }
 
-  // Insert functions
-  public function insertInto($name, $age) {
-    $query = $this->getPDO()->prepare("INSERT INTO client(name, age) VALUES (?, ?)");
-    $query->execute(array($name, $age));
+  // Insert into function
+
+  public function insertInto($table, $assoArray) {
+    $request = 'INSERT INTO' . " " . $table;
+    $row = "(";
+    $val = array ();
+    $values = "(";
+    $count = 1;
+    foreach ($assoArray as $key => $value) {
+        if ($count != count($assoArray)) {
+          $row .= $key . ",";
+          array_push($val, $value);
+          $values .= "?,";
+          $count += 1;
+        }
+        else {
+          $row .= $key;
+          array_push($val, $value);
+          $values .= "?";
+        }
+
+    }
+    $row .= ")";
+    $values .= ")";
+    $request .= $row . " " . 'VALUES' . " " . $values;
+    $query = $this->getPDO()->prepare($request);
+    $query->execute($val);
   }
 
   // Update function
