@@ -88,10 +88,29 @@ class dataManager extends dataBase {
   }
 
   // Update function
-  public function updateTable($name, $age, $id) {
-    $query = $this->getPDO()->prepare("UPDATE client SET name=?, age=? WHERE id=?");
-    $query->execute(array($name, $age, $id));
-    header("Refresh:0");
+  public function updateTable($table, $assoArray) {
+    $request = 'UPDATE' . " " . $table . " " . 'SET';
+    $count = 1;
+    $val = array();
+    foreach ($assoArray as $key => $value) {
+      if ($value != end($assoArray) ) {
+        if ($count < count($assoArray)-1) {
+          $request .= " " . $key . "=?,";
+          $count += 1;
+        }
+        else {
+          $request .= " " . $key . "=?";
+          $count += 1;
+        }
+      }
+      else {
+        $request .= " " . 'WHERE' . " " . $key . "=?";
+      }
+      array_push($val, $value);
+    }
+    $query = $this->getPDO()->prepare($request);
+    $query->execute($val);
+    // // header("Refresh:0");
   }
 
 }

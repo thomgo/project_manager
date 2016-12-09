@@ -13,6 +13,8 @@ $dataManager = new dataManager;
 //
 // $dataManager->insertInto("projects", ["title"=>"jijiji", "text"=>"jojojo"]);
 
+$dataManager->updateTable("projects", ["client_id"=>1, "title"=>"riri", "text"=>"jojojo"]);
+
 
 $form = new form;
 
