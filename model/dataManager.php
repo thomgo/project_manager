@@ -21,7 +21,7 @@ class dataManager extends dataBase {
     $request = 'SELECT * FROM' . " " . $table . " " . 'WHERE ' . " " . $parameter . '= ?';
     $query = $this->getPDO()->prepare($request);
     $query->execute(array($val));
-    $query = $query->fetchAll();
+    $query = $query->fetch();
     return $query;
   }
 
