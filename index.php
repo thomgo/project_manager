@@ -1,8 +1,8 @@
 <?php
 
-require_once "model/dataManager.php";
-require_once "forms/form.php";
-require_once "Entities/Project.php";
+// Autoloader
+require_once "services/autoloader.php";
+Autoloader::register();
 
 $dataManager = new dataManager;
 

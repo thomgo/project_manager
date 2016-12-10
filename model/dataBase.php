@@ -1,6 +1,6 @@
 <?php
 
-class dataBase {
+trait dataBase {
 
   public function getPDO() {
     // Test the connexion

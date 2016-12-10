@@ -3,7 +3,9 @@
 require_once 'dataBase.php';
 
 // A sample class to manage the crud of an entity
-class dataManager extends dataBase {
+class dataManager {
+  
+use  dataBase;
 
 // Get data functions
   public function getAll($table) {
