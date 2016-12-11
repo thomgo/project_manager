@@ -15,7 +15,7 @@ class Autoloader{
       if ($class == "dataManager") {
         require_once 'model/' . $class . '.php';
       }
-      elseif ($class == "form") {
+      elseif ($class == "Form") {
         require_once 'forms/' . $class . '.php';
       }
       else {

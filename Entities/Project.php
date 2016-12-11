@@ -1,10 +1,12 @@
 <?php
-
+require_once "Hydrator.php";
 /**
  *
  */
-class Project
-{
+class Project {
+
+// Hydrating function
+  use Hydrator;
 
   private $id;
   private $title;
@@ -54,16 +56,6 @@ class Project
   function __construct(array $donnees)
   {
       $this->hydrate($donnees);
-  }
-
-  public function hydrate (array $donnees) {
-    foreach ($donnees as $key=>$value) {
-
-      $methode = 'set'. ucfirst($key);
-      if (method_exists($this, $methode)) {
-      $this->$methode($value);
-      }
-    }
   }
 
 }
