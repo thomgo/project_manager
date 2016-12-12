@@ -1,9 +1,14 @@
 <?php
 
+// Get the validator trait to secure the variables from the form
+require_once'Validator.php';
+
 // This class is a form builder that aims to spare you a lot of time parametring your forms
 // Use the different functions below to display a form in your html via a form object
 
 class Form {
+
+  use Validator;
 
 // The function to add the first form tag, first specify the file to send the data as a string
 // You can also add a class as a string but this is optional

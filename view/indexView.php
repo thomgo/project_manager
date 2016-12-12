@@ -17,8 +17,7 @@ foreach ($data as $proj) {
   echo $project->getTitle();
 }
 
-echo "The current page name is ".curPageName();
-
+// echo htmlspecialchars($_POST['title']);
 
 $form->formStart("index.php", "classtest");
   $form->textInput("title", "le titre", "required");

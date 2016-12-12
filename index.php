@@ -18,19 +18,15 @@ $test = $dataManager->getWhere("projects", ["title"=>"riri"]);
 
 $project = new Project($test);
 
-function curPageName() {
- return substr($_SERVER["SCRIPT_NAME"],strrpos($_SERVER["SCRIPT_NAME"],"/")+1);
-}
-
 
 $form = new Form;
 
 
-// if (isset($_POST)) {
-//  $_POST;
-//  $dataManager->insertInto("projects", $_POST);
-//  header('index.php', 'refresh');
-// }
+if (isset($_POST)) {
+ $_POST = $form->validateForm($_POST);
+ $dataManager->insertInto("projects", $_POST);
+ header('index.php', 'refresh');
+}
 include "view/indexView.php";
 
 ?>
