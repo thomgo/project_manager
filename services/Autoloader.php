@@ -9,7 +9,7 @@ class Autoloader{
         spl_autoload_register(array(__CLASS__, 'autoload'));
     }
 
-// List the different paths to the classes to load
+// List the different paths for the classes to load
 
     static function autoload($class){
       if ($class == "dataManager") {
@@ -17,6 +17,9 @@ class Autoloader{
       }
       elseif ($class == "Form") {
         require_once 'forms/' . $class . '.php';
+      }
+      elseif ($class == "userManager") {
+        require_once 'services/' . $class . '.php';
       }
       else {
         require_once 'Entities/' . $class . '.php';

@@ -8,23 +8,20 @@ include "header.php";
 ?>
 
 <p>
-  Testons pour voir si cette relations marchent
+  Testons cette relations marchent
 </p>
 
 <?php
-foreach ($data as $proj) {
-  $project = new Project($proj);
-  echo $project->getTitle();
-}
 
 $form->formStart("index.php", "classtest");
-  $form->textInput("title", "le titre", "required");
-  $form->textArea("text", "le texte", "required");
-  $form->numberInput("client_id", "votre id", "required");
+  $form->textInput("pseudo", "Votre pseudo", "required");
+  $form->passwordInput("password", "votre mot de passe", "required");
+  $form->emailInput("email", "Votre email", "required");
   $form->submitButton("Envoyer");
 $form->formEnd();
 
  ?>
+
 
 
 <?php include "footer.php"; ?>

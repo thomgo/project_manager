@@ -5,34 +5,30 @@ require_once "services/Autoloader.php";
 Autoloader::register();
 
 $dataManager = new dataManager;
-
-$data = $dataManager->getAll("projects");
-//
-// $row = $dataManager->getByRow(['name', "age", 'id'], "client");
-//
-$test = $dataManager->getWhere("projects", ["title"=>"riri"]);
-//
-// $dataManager->insertInto("projects", ["title"=>"jijiji", "text"=>"jojojo"]);
-
-// $dataManager->updateTable("projects", ["client_id"=>1, "title"=>"riri", "text"=>"jojojo"]);
-
-$project = new Project($test);
-
-
+$userManager = new userManager;
 $form = new Form;
 
+$data = $dataManager->getAll("projects");
 
-if (isset($_POST)) {
-  $_POST = $form->validateForm($_POST);
-    if (gettype($_POST === "array")) {
-      $dataManager->insertInto("projects", $_POST);
-      header('index.php', 'refresh');
-    }
-    else {
-      echo $_POST;
-    }
+$test = $dataManager->getWhere("user", ["pseudo"=>"Nono"]);
 
-  }
+$user = new User($test);
+
+$userManager->newSession($user);
+$userManager->endSession();
+
+
+// if (isset($_POST)) {
+//   $_POST = $form->validateForm($_POST);
+//     if (gettype($_POST === "array")) {
+//       $userManager->addUser($_POST);
+//       header('index.php', 'refresh');
+//     }
+//     else {
+//       echo $_POST;
+//     }
+//   }
+
 include "view/indexView.php";
 
 ?>
