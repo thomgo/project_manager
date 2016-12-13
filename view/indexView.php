@@ -17,8 +17,6 @@ foreach ($data as $proj) {
   echo $project->getTitle();
 }
 
-// echo htmlspecialchars($_POST['title']);
-
 $form->formStart("index.php", "classtest");
   $form->textInput("title", "le titre", "required");
   $form->textArea("text", "le texte", "required");

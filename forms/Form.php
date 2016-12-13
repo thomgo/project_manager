@@ -74,16 +74,16 @@ class Form {
 
   public function checkboxInput($name, $label, $array, $required=false) {
     if ($required && $required = "Required" || "required") {
-      echo '<label>' . $label;
+      echo '<label>' . $label . '</label>' ;
       foreach ($array as $value) {
-        echo '<input type="checkbox" name=' . $name . ' value=' . $value . ' required >' . $value;
+        echo '<input type="checkbox" name=' . $name . '[]' . ' value=' . $value . ' required >' . $value;
       }
-      echo '</label>';
+      // echo '</label>';
     }
     else {
-      echo '<label>' . $label;
+      echo '<label>' . $label . '</label>' ;
       foreach ($array as $value) {
-        echo '<input type="checkbox" name=' . $name . ' value=' . $value .'>' . $value;
+        echo '<input type="checkbox" name=' . $name . '[]' . ' value=' . $value .'>' . $value;
       }
       echo '</label>';
     }

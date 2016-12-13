@@ -23,10 +23,16 @@ $form = new Form;
 
 
 if (isset($_POST)) {
- $_POST = $form->validateForm($_POST);
- $dataManager->insertInto("projects", $_POST);
- header('index.php', 'refresh');
-}
+  $_POST = $form->validateForm($_POST);
+    if (gettype($_POST === "array")) {
+      $dataManager->insertInto("projects", $_POST);
+      header('index.php', 'refresh');
+    }
+    else {
+      echo $_POST;
+    }
+
+  }
 include "view/indexView.php";
 
 ?>
