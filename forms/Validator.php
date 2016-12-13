@@ -2,9 +2,12 @@
 
 // A trait that aims to treat the different variable that you get from your forms
 // It will make sure that no script is injected for exemple
+// Just pass you post global variable in the function
+// If everything is OK you will get back an array otherwise a error message from where the function stopped
 
 trait Validator {
 
+// The validate function take the $_POST variable as an argument
   public function validateForm($assoArray) {
     foreach ($assoArray as $key => $value) {
 
