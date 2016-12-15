@@ -13,13 +13,6 @@ include "header.php";
 
 <?php
 
-$form->formStart("index.php", "classtest");
-  $form->textInput("pseudo", "Votre pseudo", "required");
-  $form->passwordInput("password", "votre mot de passe", "required");
-  $form->emailInput("email", "Votre email", "required");
-  $form->submitButton("Envoyer");
-$form->formEnd();
-
  ?>
 
 

@@ -15,13 +15,12 @@ $test = $dataManager->getWhere("user", ["pseudo"=>"Nono"]);
 $user = new User($test);
 
 $userManager->newSession($user);
-$userManager->endSession();
+$userManager->inscription();
+$userManager->connexion();
 
 if (empty($_SESSION)) {
   echo "Il y a une session";
 }
-
-var_dump($_SESSION);
 
 
 // if (isset($_POST)) {
