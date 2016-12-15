@@ -16,7 +16,7 @@ class userManager extends dataManager {
   }
 
   public function endSession() {
-      $_SESSION = array();
+      $_SESSION= array();
       session_destroy();
   }
   public function inscription() {
