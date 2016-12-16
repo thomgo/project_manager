@@ -21,9 +21,14 @@ class userManager extends dataManager {
       $_SESSION= array();
       session_destroy();
   }
+
+  public function pageName() {
+    return substr($_SERVER["SCRIPT_NAME"],strrpos($_SERVER["SCRIPT_NAME"],"/")+1);
+  }
+
   public function inscription() {
     $form = new Form;
-    $form->formStart("index.php");
+    $form->formStart($this->pageName());
       $form->textInput("pseudo", "Choisissez votre pseudo", "required");
       $form->passwordInput("password", "Indiquez un mot de passe", "required");
       $form->emailInput("email", "Votre email", "required");
@@ -34,7 +39,7 @@ class userManager extends dataManager {
 
   public function connexion() {
     $form = new Form;
-    $form->formStart("index.php");
+    $form->formStart($this->pageName());
       $form->textInput("pseudo", "Votre pseudo", "required");
       $form->passwordInput("password", "Votre mot de passe", "required");
       $form->submitButton("Connexion");
