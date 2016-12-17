@@ -19,7 +19,7 @@ use  dataBase;
   public function getAll($table) {
     $request = 'SELECT * FROM' . " " . $table;
     $query = $this->getPDO()->query($request);
-    $query = $query->fetchAll();
+    $query = $query->fetchAll(PDO::FETCH_ASSOC);
     return $query;
   }
 

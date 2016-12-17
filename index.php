@@ -16,23 +16,18 @@ $user = new User($test);
 
 $userManager->newSession($user);
 $userManager->inscription();
-$userManager->connexion();
+// $userManager->connexion();
 
-if (empty($_SESSION)) {
-  echo "Il y a une session";
-}
-
-
-// if (isset($_POST)) {
-//   $_POST = $form->validateForm($_POST);
-//     if (gettype($_POST === "array")) {
-//       $userManager->addUser($_POST);
-//       header('index.php', 'refresh');
-//     }
-//     else {
-//       echo $_POST;
-//     }
-//   }
+if (isset($_POST)) {
+  // $_POST = $form->validateForm($_POST);
+  //   if (gettype($_POST === "array")) {
+      $userManager->addUser($_POST);
+      header('index.php', 'refresh');
+    // }
+    // else {
+    //   echo $_POST;
+    // }
+  }
 
 include "view/indexView.php";
 

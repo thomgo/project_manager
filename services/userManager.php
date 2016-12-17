@@ -6,11 +6,6 @@ require_once "forms/Form.php";
 
 class userManager extends dataManager {
 
-// Add a user in the database
-  public function addUser($user) {
-    $this->insertInto("user", $user);
-  }
-
 // Start a new session based on a user object
   public function newSession($user) {
       session_start();
@@ -45,6 +40,37 @@ class userManager extends dataManager {
       $form->submitButton("Connexion");
     $form->formEnd();
   }
+
+  // Add a user in the database
+    public function addUser($user) {
+      $error = "An error occured while your registration : ";
+      $errorDetection = false;
+      $allUsers = $this->getAll("user");
+      foreach ($allUsers as $key => $value) {
+        foreach ($value as $key => $value) {
+          switch ($value) {
+            case $user['pseudo']:
+              $error .= "This pseudo is already used";
+              $errorDetection = true;
+              break;
+            case $user['email']:
+              $error .= "This email is already used";
+              $errorDetection = true;
+              break;
+          }
+          if (password_verify($user['password'], $value)) {
+            $error .= "This password is already used";
+            $errorDetection = true;
+          }
+        }
+      }
+      if (!$errorDetection) {
+          $this->insertInto("user", $user);
+      }
+      else {
+        echo "<article class='errorMessage'>" . $error . "<article>";
+      }
+    }
 
 }
 
