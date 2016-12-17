@@ -65,7 +65,14 @@ class userManager extends dataManager {
         }
       }
       if (!$errorDetection) {
-          $this->insertInto("user", $user);
+        $form = new Form;
+        $user = $form->validateForm($user);
+          if (gettype($user === "array")) {
+            $this->insertInto("user", $user);
+          }
+          else {
+            echo "<article class='errorMessage'>" . $user . "<article>";
+          }
       }
       else {
         echo "<article class='errorMessage'>" . $error . "<article>";

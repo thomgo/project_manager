@@ -19,14 +19,8 @@ $userManager->inscription();
 // $userManager->connexion();
 
 if (isset($_POST)) {
-  // $_POST = $form->validateForm($_POST);
-  //   if (gettype($_POST === "array")) {
       $userManager->addUser($_POST);
       header('index.php', 'refresh');
-    // }
-    // else {
-    //   echo $_POST;
-    // }
   }
 
 include "view/indexView.php";
