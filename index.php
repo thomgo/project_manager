@@ -28,7 +28,7 @@ $data = $dataManager->getAll("projects");
 //       header('index.php', 'refresh');
 //   }
 
-// $userManager->endSession();
+$userManager->endSession();
 $userManager->sessionAccessHide("view/indexView.php");
 
 // include "view/indexView.php";
