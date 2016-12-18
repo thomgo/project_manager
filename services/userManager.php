@@ -8,7 +8,6 @@ class userManager extends dataManager {
 
 // Start a new session based on a user object
   public function newSession($user) {
-      session_start();
       $_SESSION['User'] = $user;
   }
 
@@ -21,7 +20,7 @@ class userManager extends dataManager {
     return substr($_SERVER["SCRIPT_NAME"],strrpos($_SERVER["SCRIPT_NAME"],"/")+1);
   }
 
-  public function inscription() {
+  public function inscriptionForm() {
     $form = new Form;
     $form->formStart($this->pageName());
       $form->textInput("pseudo", "Choisissez votre pseudo", "required");
@@ -32,7 +31,7 @@ class userManager extends dataManager {
 
   }
 
-  public function connexion() {
+  public function connexionForm() {
     $form = new Form;
     $form->formStart($this->pageName());
       $form->textInput("pseudo", "Votre pseudo", "required");
@@ -43,23 +42,23 @@ class userManager extends dataManager {
 
   // Add a user in the database
     public function addUser($user) {
-      $error = "An error occured while your registration : ";
+      $error = "<h2>An error occured while your registration : </h2>";
       $errorDetection = false;
       $allUsers = $this->getAll("user");
       foreach ($allUsers as $key => $value) {
         foreach ($value as $key => $value) {
           switch ($value) {
             case $user['pseudo']:
-              $error .= "This pseudo is already used";
+              $error .= "<p>This pseudo is already used</p>";
               $errorDetection = true;
               break;
             case $user['email']:
-              $error .= "This email is already used";
+              $error .= "<p>This email is already used</p>";
               $errorDetection = true;
               break;
           }
           if (password_verify($user['password'], $value)) {
-            $error .= "This password is already used";
+            $error .= "<p>This password is already used</p>";
             $errorDetection = true;
           }
         }
@@ -77,6 +76,52 @@ class userManager extends dataManager {
       else {
         echo "<article class='errorMessage'>" . $error . "<article>";
       }
+    }
+
+    // Connect the user if the user is registered in the database
+    public function connectUser($user) {
+      $error = "<h2>An error occured while your connexion : </h2>";
+      if ($registeredUser = $this->getWhere("user", ["pseudo"=>$user['pseudo']])) {;
+      foreach ($registeredUser as $key => $value) {
+        if ($key === "password") {
+          if (password_verify($user['password'], $value)) {
+            $this->newSession($registeredUser);
+          }
+          else {
+            $error .= "<p>Your password is not correct</p>";
+            echo "<article class='errorMessage'>" . $error . "<article>";
+          }
+        }
+      }
+     }
+     else {
+       $error .= "<p>This pseudo is unknown</p>";
+       echo "<article class='errorMessage'>" . $error . "<article>";
+     }
+    }
+
+    // Function to hide the view if the user is not registered
+    public function sessionAccessHide ($view) {
+      if (empty($_SESSION)) {
+
+        echo "<article class='errorMessage'><h2>This content is only for registered members</h2>";
+        $this->connexionForm();
+        echo "<article>";
+
+        if (isset($_POST)) {
+              $this->connectUser($_POST);
+              header($this->pageName(), 'refresh');
+          }
+      }
+      else {
+            include $view;
+        }
+
+    }
+
+    function __construct()
+    {
+        session_start();
     }
 
 }

@@ -9,20 +9,28 @@ $userManager = new userManager;
 $form = new Form;
 
 $data = $dataManager->getAll("projects");
+// foreach ($data as $key => $projects) {
+//   $project = new Project($projects);
+//   echo $project->getTitle();
+// }
+
+// $test = $dataManager->getWhere("user", ["pseudo"=>"Nono"]);
+// $user = new User($test);
+// var_dump($user);
+
+// $userManager->newSession($user);
+// $userManager->inscriptionForm();
+// $userManager->connexionForm();
 
 
-$test = $dataManager->getWhere("user", ["pseudo"=>"Nono"]);
-$user = new User($test);
+// if (isset($_POST)) {
+//       $userManager->connectUser($_POST);
+//       header('index.php', 'refresh');
+//   }
 
-$userManager->newSession($user);
-$userManager->inscription();
-// $userManager->connexion();
+// $userManager->endSession();
+$userManager->sessionAccessHide("view/indexView.php");
 
-if (isset($_POST)) {
-      $userManager->addUser($_POST);
-      header('index.php', 'refresh');
-  }
-
-include "view/indexView.php";
+// include "view/indexView.php";
 
 ?>

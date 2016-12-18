@@ -32,7 +32,7 @@ use  dataBase;
     $request = 'SELECT * FROM' . " " . $table . " " . 'WHERE ' . " " . $parameter . '= ?';
     $query = $this->getPDO()->prepare($request);
     $query->execute(array($val));
-    $query = $query->fetch();
+    $query = $query->fetch(PDO::FETCH_ASSOC);
     return $query;
   }
 
