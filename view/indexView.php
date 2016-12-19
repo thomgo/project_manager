@@ -9,11 +9,7 @@ include "header.php";
 
 <p>
   Testons cette relations marchent
-
-  Voici du contenu qui n'est accessible qu'aux utilisteurs enregistrés !
 </p>
-
-<a href="test.php">Cliquez ici</a>
 
 <?php
 

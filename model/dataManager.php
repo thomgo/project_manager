@@ -1,6 +1,7 @@
 <?php
 
 require_once 'dataBase.php';
+require_once'forms/Validator.php';
 
 // A class to manage the crud of an entity
 //The order of the arguments always respect the native sql order
@@ -10,6 +11,7 @@ require_once 'dataBase.php';
 class dataManager {
 
 use  dataBase;
+use  Validator;
 
 //
 //~~~~~~~~~  Get data function  ~~~~~~~~~~~
@@ -82,30 +84,42 @@ use  dataBase;
 
 // Insert into a specific table keys with their values in an associative array
   public function insertInto($table, $assoArray) {
-    $request = 'INSERT INTO' . " " . $table;
-    $row = "(";
-    $val = array ();
-    $values = "(";
-    $count = 1;
-    foreach ($assoArray as $key => $value) {
-        if ($count != count($assoArray)) {
-          $row .= $key . ",";
-          array_push($val, $value);
-          $values .= "?,";
-          $count += 1;
-        }
-        else {
-          $row .= $key;
-          array_push($val, $value);
-          $values .= "?";
-        }
+    // Sanitize the data before insertion in order to protect the data base
+    $assoArray = $this->validateForm($assoArray);
 
+    // If the data is OK you get back an array from validateForm that can be inserted
+    if (gettype($assoArray) === "array") {
+      $request = 'INSERT INTO' . " " . $table;
+      $row = "(";
+      $val = array ();
+      $values = "(";
+      $count = 1;
+      foreach ($assoArray as $key => $value) {
+          if ($count != count($assoArray)) {
+            $row .= $key . ",";
+            array_push($val, $value);
+            $values .= "?,";
+            $count += 1;
+          }
+          else {
+            $row .= $key;
+            array_push($val, $value);
+            $values .= "?";
+          }
+
+      }
+      $row .= ")";
+      $values .= ")";
+      $request .= $row . " " . 'VALUES' . " " . $values;
+      $query = $this->getPDO()->prepare($request);
+      $query->execute($val);
     }
-    $row .= ")";
-    $values .= ")";
-    $request .= $row . " " . 'VALUES' . " " . $values;
-    $query = $this->getPDO()->prepare($request);
-    $query->execute($val);
+
+    // Otherwise you get back an error message that is displayed
+    else {
+      echo "<article class='errorMessage'>" . $assoArray . "<article>";
+    }
+
   }
 
   //

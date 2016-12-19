@@ -14,19 +14,16 @@ $data = $dataManager->getAll("projects");
 //   echo $project->getTitle();
 // }
 
-// $test = $dataManager->getWhere("user", ["pseudo"=>"Nono"]);
-// $user = new User($test);
-// var_dump($user);
 
 // $userManager->newSession($user);
-// $userManager->inscriptionForm();
+$userManager->registrationForm();
 // $userManager->connexionForm();
 //
 //
-// if (isset($_POST)) {
-//       $userManager->connectUser($_POST);
-//       header('index.php', 'refresh');
-//   }
+if (isset($_POST)) {
+      $userManager->addUser($_POST);
+      header('index.php', 'refresh');
+  }
 
 
 include "view/indexView.php";

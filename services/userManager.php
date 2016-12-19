@@ -98,16 +98,7 @@ class userManager extends dataManager {
       }
       // If errordetection still to false there is no conflict and we can register the user
       if (!$errorDetection) {
-        $form = new Form;
-        // Sanitize all the submitted data and if they are ok insert them in the database
-        $user = $form->validateForm($user);
-          if (gettype($user === "array")) {
-            $this->insertInto("user", $user);
-          }
-          // If some data are not valid then echo the message that validateForm returns
-          else {
-            echo "<article class='errorMessage'>" . $user . "<article>";
-          }
+        $this->insertInto("user", $user);
       }
       // If error has been detected then shows the global error message
       else {
