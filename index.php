@@ -21,16 +21,14 @@ $data = $dataManager->getAll("projects");
 // $userManager->newSession($user);
 // $userManager->inscriptionForm();
 // $userManager->connexionForm();
-
-
+//
+//
 // if (isset($_POST)) {
 //       $userManager->connectUser($_POST);
 //       header('index.php', 'refresh');
 //   }
 
-$userManager->endSession();
-$userManager->sessionAccessHide("view/indexView.php");
 
-// include "view/indexView.php";
+include "view/indexView.php";
 
 ?>

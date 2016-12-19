@@ -177,6 +177,15 @@ class userManager extends dataManager {
 
     }
 
+    // Function that reidrects the user to an other page he is not connected
+    // $yourPage is the aboslute path to the redirection page as a string
+
+    public function sessionRedirection ($yourPage) {
+      if (empty($_SESSION)) {
+        header('Location: ' . $yourPage);
+      }
+    }
+
 
 
     //
