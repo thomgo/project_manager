@@ -14,6 +14,7 @@ class User {
   private $password;
   private $email;
   private $inscriptionDate;
+  private $role;
 
 
   // Setters
@@ -43,6 +44,11 @@ class User {
     $this->inscriptionDate = $date;
   }
 
+  public function setRole($role)
+  {
+    $this->role = $role;
+  }
+
   // Getters
 
   public function getId() {
@@ -63,6 +69,10 @@ class User {
 
   public function getInscriptionDate() {
     return $this->inscriptionDate;
+  }
+
+  public function getRole() {
+    return $this->role;
   }
 
   function __construct(array $donnees)
