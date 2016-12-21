@@ -14,13 +14,15 @@ $data = $dataManager->getAll("projects");
 //   echo $project->getTitle();
 // }
 
-$user = $dataManager->getWhere("user", ["pseudo"=>"nono"]);
+
+$user = $userManager->specificUser(["pseudo"=>"Nono"]);
+var_dump($user);
 // $userManager->newSession($user);
 $userManager->registrationForm();
 // $userManager->connexionForm();
-var_dump($_SESSION);
-
-$userManager->logButton("index.php");
+// var_dump($_SESSION);
+//
+// $userManager->logButton("index.php");
 
 // if (isset($_POST)) {
 //   var_dump($_POST);

@@ -142,6 +142,33 @@ class userManager extends dataManager {
 
 
 
+
+
+    //
+    //~~~~~~~~~  A function to get all the users at once in an array  ~~~~~~~~~~~
+    //
+    //
+
+    public function allUsers() {
+      return $this->getAll("user");
+    }
+
+
+
+
+    //
+    //~~~~~~~~~  A function to get a specific user with case sensitive request  ~~~~~~~~~~~
+    //
+    //
+
+    public function specificUser($assoArray) {
+      return $this->getWhere("user", $assoArray);
+    }
+
+
+
+
+
     //
     //~~~~~~~~~  A function to display a logout button  ~~~~~~~~~~~
     //

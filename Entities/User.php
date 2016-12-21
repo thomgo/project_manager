@@ -10,7 +10,10 @@ class User {
   use Hydrator;
 
   private $id;
+
+  // I strongly recommand you make this attribute case sensitive in MySql setting its attribute to Binary
   private $pseudo;
+
   private $password;
   private $email;
   private $inscriptionDate;
