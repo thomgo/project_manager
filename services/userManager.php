@@ -41,7 +41,7 @@ class userManager extends dataManager {
       $form->textInput("pseudo", "Choisissez votre pseudo", "required");
       $form->passwordInput("password", "Indiquez un mot de passe", "required");
       $form->emailInput("email", "Votre email", "required");
-      $form->submitButton("S'inscrire");
+      $form->submitButton("registration", "S'inscrire");
     $form->formEnd();
 
   }
@@ -58,7 +58,7 @@ class userManager extends dataManager {
     $form->formStart($this->pageName());
       $form->textInput("pseudo", "Votre pseudo", "required");
       $form->passwordInput("password", "Votre mot de passe", "required");
-      $form->submitButton("Connexion");
+      $form->submitButton("connexion", "Connexion");
     $form->formEnd();
   }
 
@@ -142,6 +142,33 @@ class userManager extends dataManager {
 
 
 
+    //
+    //~~~~~~~~~  A function to display a logout button  ~~~~~~~~~~~
+    //
+    //
+
+    public function logButton($connexionPage) {
+      $form = new form;
+      $form->formStart($this->pageName());
+      if (!empty($_SESSION)) {
+        $form->submitButton("logout", "Logout");
+      }
+      else {
+        $form->submitButton("connexion", "Connexion");
+      }
+      $form->formEnd();
+
+      if (isset($_POST['logout'])) {
+        $this->endSession();
+        header($this->pageName(), 'refresh');
+      }
+
+      if (isset($_POST['connexion'])) {
+        header("Location: $connexionPage");
+      }
+    }
+
+
 
     //
     //~~~~~~~~~  Function to hide the view if the user is not registered  ~~~~~~~~~~~
@@ -173,7 +200,7 @@ class userManager extends dataManager {
 
     public function sessionRedirection ($yourPage) {
       if (empty($_SESSION)) {
-        header('Location: ' . $yourPage);
+        header("Location: $yourPage");
       }
     }
 
