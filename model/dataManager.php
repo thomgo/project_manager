@@ -56,6 +56,31 @@ use  Validator;
     return $query;
   }
 
+
+  // get the data from two join table. Pass an associative array with the table and the related key as string
+  // for exemple simpleJoin(["client"=>"id", "projects"=>"client_id"])
+  public function simpleJoin($assoArray) {
+    $tables = [];
+    $values = [];
+    foreach ($assoArray as $key => $value) {
+      array_push($tables, $key);
+      array_push($values, $value);
+    }
+      $request = 'SELECT * FROM ' . $tables[0] . " AS one, " . $tables[1] . " AS two WHERE one." . $values[0] . " = two." . $values[1];
+    // var_dump($request);
+    $request = "SELECT * FROM projects AS one, client AS two WHERE one.client_id = two.id";
+    $query = $this->getPDO()->query($request);
+    $query = $query->fetchAll(PDO::FETCH_ASSOC);
+    return $query;
+  }
+
+  // public function joinTables() {
+  //   $request = "SELECT p.title, c.name FROM client c INNER JOIN projects p ON p.client_id = c.id";
+  //   $query = $this->getPDO()->query($request);
+  //   $query = $query->fetchAll(PDO::FETCH_ASSOC);
+  //   return $query;
+  // }
+
   //
   //~~~~~~~~~  Delete function  ~~~~~~~~~~~
   //

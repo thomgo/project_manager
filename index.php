@@ -8,15 +8,15 @@ $dataManager = new dataManager;
 $userManager = new userManager;
 $form = new Form;
 
-$data = $dataManager->getAll("projects");
+$data = $dataManager->simpleJoin(["client"=>"id", "projects"=>"client_id"]);
 // foreach ($data as $key => $projects) {
 //   $project = new Project($projects);
 //   echo $project->getTitle();
 // }
+foreach ($data as $key => $value) {
+  echo "<p>Le client " . $value['name'] . " est acteur du projet " . $value['title'] . "</p>";
+}
 
-
-$user = $userManager->specificUser(["pseudo"=>"Nono"]);
-var_dump($user);
 // $userManager->newSession($user);
 $userManager->registrationForm();
 // $userManager->connexionForm();
