@@ -7,18 +7,19 @@ Autoloader::register();
 $dataManager = new dataManager;
 $userManager = new userManager;
 $form = new Form;
+$fileManager = new fileManager;
 
 $data = $dataManager->simpleJoin(["client"=>"id", "projects"=>"client_id"]);
 // foreach ($data as $key => $projects) {
 //   $project = new Project($projects);
 //   echo $project->getTitle();
 // }
-foreach ($data as $key => $value) {
-  echo "<p>Le client " . $value['name'] . " est acteur du projet " . $value['title'] . "</p>";
-}
+// foreach ($data as $key => $value) {
+//   echo "<p>Le client " . $value['name'] . " est acteur du projet " . $value['title'] . "</p>";
+// }
 
 // $userManager->newSession($user);
-$userManager->registrationForm();
+// $userManager->registrationForm();
 // $userManager->connexionForm();
 // var_dump($_SESSION);
 //
@@ -30,8 +31,9 @@ $userManager->registrationForm();
 //       // header('index.php', 'refresh');
 //   }
 
-// $monUrl = $_SERVER['REQUEST_URI'];
-// echo $monUrl;
+if (isset($_POST)) {
+  var_dump($_POST);
+}
 
 
 include "view/indexView.php";

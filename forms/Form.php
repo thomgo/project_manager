@@ -15,10 +15,10 @@ class Form {
 
   public function formStart($action, $class=false) {
     if ($class) {
-      echo '<form action=' . $action.  ' method="post" class='. $class .'>';
+      echo '<form action=' . $action.  ' method="post" class='. $class . 'enctype="multipart/form-data">';
     }
     else {
-      echo '<form action=' . $action.  ' method="post">';
+      echo '<form action=' . $action.  ' method="post" enctype="multipart/form-data" >';
     }
   }
 

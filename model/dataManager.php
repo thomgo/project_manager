@@ -74,13 +74,6 @@ use  Validator;
     return $query;
   }
 
-  // public function joinTables() {
-  //   $request = "SELECT p.title, c.name FROM client c INNER JOIN projects p ON p.client_id = c.id";
-  //   $query = $this->getPDO()->query($request);
-  //   $query = $query->fetchAll(PDO::FETCH_ASSOC);
-  //   return $query;
-  // }
-
   //
   //~~~~~~~~~  Delete function  ~~~~~~~~~~~
   //

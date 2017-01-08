@@ -21,6 +21,9 @@ class Autoloader{
       elseif ($class == "userManager") {
         require_once 'services/' . $class . '.php';
       }
+      elseif ($class == "fileManager") {
+        require_once 'services/' . $class . '.php';
+      }
       else {
         require_once 'Entities/' . $class . '.php';
       }
