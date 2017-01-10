@@ -9,6 +9,9 @@ $userManager = new userManager;
 $form = new Form;
 $fileManager = new fileManager;
 
+$file = $dataManager->getWhere("project_image", ["name"=>"supports.jpg"]);
+$image = new File($file);
+
 $data = $dataManager->simpleJoin(["client"=>"id", "projects"=>"client_id"]);
 // foreach ($data as $key => $projects) {
 //   $project = new Project($projects);
@@ -30,10 +33,6 @@ $data = $dataManager->simpleJoin(["client"=>"id", "projects"=>"client_id"]);
 //       // $userManager->addUser($_POST);
 //       // header('index.php', 'refresh');
 //   }
-
-if (isset($_POST)) {
-  var_dump($_POST);
-}
 
 
 include "view/indexView.php";

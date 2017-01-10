@@ -17,17 +17,15 @@ $form->fileInput("file", "Votre fichier", "required");
 $form->submitButton("fichier", "send");
 $form->formEnd();
  ?>
-<p>
 
   <?php
-  if (isset($_POST)) {
-    var_dump($_FILES);
-    echo $_FILES['file']['name'];
-    echo $_FILES['file']['type'];
-  }
-
+  // if (isset($_POST)) {
+  //   var_dump($_FILES);
+  //   echo $_FILES['file']['name'];
+  //   echo $_FILES['file']['type'];
+  // }
+  $fileManager->img($image);
    ?>
-</p>
 
 
 
