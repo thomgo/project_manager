@@ -143,6 +143,14 @@ class Form {
     }
   }
 
+  public function hiddenInput($name, $value) {
+      echo '<input type="hidden" name=' . $name . ' value='. $value .' >';
+  }
+
+  public function maxFileSize($value) {
+      echo '<input type="hidden" name="MAX_FILE_SIZE" value='. $value .' >';
+  }
+
 // Functions to display a textarea and a select fields. Work as the input functions
 
   public function textArea($name, $label, $required=false) {

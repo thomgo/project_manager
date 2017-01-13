@@ -14,6 +14,7 @@ class File {
   private $type;
   private $size;
   private $path;
+  private $alt;
 
   // Setters
 
@@ -42,6 +43,11 @@ class File {
     $this->path = $path;
   }
 
+  public function setAlt($alt)
+  {
+    $this->alt = $alt;
+  }
+
   // Getters
 
   public function getId() {
@@ -62,6 +68,10 @@ class File {
 
   public function getPath() {
     return $this->path;
+  }
+
+  public function getAlt() {
+    return $this->alt;
   }
 
   function __construct(array $donnees)

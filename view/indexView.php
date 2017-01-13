@@ -13,6 +13,7 @@ include "header.php";
 
 <?php
 $form->formStart("index.php");
+$form->maxFileSize("104");
 $form->fileInput("file", "Votre fichier", "required");
 $form->submitButton("fichier", "send");
 $form->formEnd();
@@ -25,6 +26,9 @@ $form->formEnd();
   //   echo $_FILES['file']['type'];
   // }
   $fileManager->img($image);
+  // $fileManager->setSample("assets/img/sample/");
+  var_dump($fileManager);
+
    ?>
 
 
