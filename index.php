@@ -9,7 +9,7 @@ $userManager = new userManager;
 $form = new Form;
 $fileManager = new fileManager;
 
-$file = $dataManager->getWhere("project_image", ["name"=>"supports.jpg"]);
+$file = $dataManager->getWhere("sample", ["name"=>"background.jpg"]);
 $image = new File($file);
 
 $data = $dataManager->simpleJoin(["client"=>"id", "projects"=>"client_id"]);
@@ -28,11 +28,9 @@ $data = $dataManager->simpleJoin(["client"=>"id", "projects"=>"client_id"]);
 //
 // $userManager->logButton("index.php");
 
-// if (isset($_POST)) {
-//   var_dump($_POST);
-//       // $userManager->addUser($_POST);
-//       // header('index.php', 'refresh');
-//   }
+if (isset($_POST)) {
+  $fileManager->fileRegister();
+}
 
 
 include "view/indexView.php";

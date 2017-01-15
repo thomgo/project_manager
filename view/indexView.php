@@ -13,22 +13,14 @@ include "header.php";
 
 <?php
 $form->formStart("index.php");
-$form->maxFileSize("104");
-$form->fileInput("file", "Votre fichier", "required");
+$form->maxFileSize("2000000");
+$form->fileInput("file/sample", "Votre fichier", "required");
 $form->submitButton("fichier", "send");
 $form->formEnd();
  ?>
 
   <?php
-  // if (isset($_POST)) {
-  //   var_dump($_FILES);
-  //   echo $_FILES['file']['name'];
-  //   echo $_FILES['file']['type'];
-  // }
   $fileManager->img($image);
-  // $fileManager->setSample("assets/img/sample/");
-  var_dump($fileManager);
-
    ?>
 
 

@@ -99,7 +99,9 @@ use  Validator;
   //
   //~~~~~~~~~  Insert function  ~~~~~~~~~~~
   //
-
+  public function roro() {
+    echo "je suis le data manager";
+  }
 // Insert into a specific table keys with their values in an associative array
   public function insertInto($table, $assoArray) {
     // Sanitize the data before insertion in order to protect the data base
