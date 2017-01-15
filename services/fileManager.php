@@ -60,7 +60,19 @@ public function fileRegister() {
 // If there is no error we can procede the registration in the database
   if (strlen($fileError)=== 0) {
     $pathMethode = "get". ucfirst($fileGroup);
-    $this->insertInto($fileGroup, ["name"=>$_FILES[key($_FILES)]["name"], "type"=>$_FILES[key($_FILES)]["type"], "path"=>$this->$pathMethode() . $_FILES[key($_FILES)]["name"], "size"=>$_FILES[key($_FILES)]["size"], "alt"=>"test"]);
+    $name = $_FILES[key($_FILES)]["name"];
+    $tmpname = $_FILES[key($_FILES)]["tmp_name"];
+    $type = $_FILES[key($_FILES)]["type"];
+    $size = $_FILES[key($_FILES)]["size"];
+
+    if (isset($_POST["alt"])) {
+      $this->insertInto($fileGroup, ["name"=>$name, "type"=>$type, "path"=>$this->$pathMethode() . $name, "size"=>$size, "alt"=>$_POST["alt"]]);
+      move_uploaded_file($tmpname, $this->$pathMethode() . $name);
+    }
+    else {
+      $this->insertInto($fileGroup, ["name"=>$name, "type"=>$type, "path"=>$this->$pathMethode() . $name, "size"=>$size, "alt"=>$name]);
+      move_uploaded_file($tmpname, $this->$pathMethode() . $name);
+    }
   }
 // If an error has been detected earlier it displays the error message
   else  {

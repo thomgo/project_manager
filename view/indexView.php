@@ -13,9 +13,11 @@ include "header.php";
 
 <?php
 $form->formStart("index.php");
+$form->textInput("name", "nom du client", "required");
+$form->numberInput("age", "age du client", "required");
 $form->maxFileSize("2000000");
-$form->fileInput("file/sample", "Votre fichier", "required");
-$form->submitButton("fichier", "send");
+$form->fileInput("file/sample", "Votre fichier", "required", true);
+$form->submitButton("envoyer");
 $form->formEnd();
  ?>
 

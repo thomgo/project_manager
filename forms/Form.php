@@ -89,12 +89,24 @@ class Form {
     }
   }
 
-  public function fileInput($name, $label, $required=false) {
-    if ($required && $required = "Required" || "required") {
-      echo '<label>' . $label . '<input type="file" name=' . $name . ' required ></label>';
+  public function fileInput($name, $label, $required = false, $alt = false) {
+    if (!$alt) {
+      if ($required && $required = "Required" || "required") {
+        echo '<label>' . $label . '<input type="file" name=' . $name . ' required ></label>';
+      }
+      else {
+        echo '<label>' . $label . '<input type="file" name=' . $name . '></label>';
+      }
     }
     else {
-      echo '<label>' . $label . '<input type="file" name=' . $name . '></label>';
+      if ($required && $required = "Required" || "required") {
+        echo '<label>' . $label . '<input type="file" name=' . $name . ' required ></label>';
+        echo '<label> A short description of the file<input type="text" name="alt" required ></label>';
+      }
+      else {
+        echo '<label>' . $label . '<input type="file" name=' . $name . '></label>';
+        echo '<label> A short description of the file<input type="text" name="alt" required ></label>';
+      }
     }
   }
 
@@ -181,8 +193,8 @@ class Form {
 
 // Function to display a submit button, the value (string type) is what appears on the button
 
-  public function submitButton($name, $value) {
-    echo '<input type="submit" name=' . $name . ' value= ' . $value .'>';
+  public function submitButton($value) {
+    echo '<input type="submit" value= ' . $value .'>';
   }
 
 // Function to display the closing form tag

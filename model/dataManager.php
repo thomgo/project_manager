@@ -99,11 +99,16 @@ use  Validator;
   //
   //~~~~~~~~~  Insert function  ~~~~~~~~~~~
   //
-  public function roro() {
-    echo "je suis le data manager";
-  }
+
 // Insert into a specific table keys with their values in an associative array
   public function insertInto($table, $assoArray) {
+
+    // Take off the file variables
+    if (isset($_FILES)) {
+      unset($assoArray["MAX_FILE_SIZE"]);
+      unset($assoArray["alt"]);
+    }
+    var_dump($assoArray);
     // Sanitize the data before insertion in order to protect the data base
     $assoArray = $this->validateForm($assoArray);
 
