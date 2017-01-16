@@ -28,8 +28,8 @@ $data = $dataManager->simpleJoin(["client"=>"id", "projects"=>"client_id"]);
 //
 // $userManager->logButton("index.php");
 
-if (isset($_POST)) {
-  if (isset($_FILES)) {
+if (!empty($_POST)) {
+  if (!empty($_FILES)) {
     $fileManager->fileRegister();
   }
   $dataManager->insertInto("client", $_POST);

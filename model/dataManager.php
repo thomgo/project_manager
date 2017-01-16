@@ -108,7 +108,7 @@ use  Validator;
       unset($assoArray["MAX_FILE_SIZE"]);
       unset($assoArray["alt"]);
     }
-    var_dump($assoArray);
+
     // Sanitize the data before insertion in order to protect the data base
     $assoArray = $this->validateForm($assoArray);
 

@@ -19,7 +19,50 @@ public function getSample(){
   return $this->sample;
 }
 
-// Management functions
+//
+//~~~~~~~~~ Management functions ~~~~~~~~~~~
+//
+
+// Insert into a specific table the data from the fileRegister function
+  public function insertFile($table, $assoArray) {
+
+    // Sanitize the data before insertion in order to protect the data base
+    $assoArray = $this->validateForm($assoArray);
+
+    // If the data is OK you get back an array from validateForm that can be inserted
+    if (gettype($assoArray) === "array") {
+      $request = 'INSERT INTO' . " " . $table;
+      $row = "(";
+      $val = array ();
+      $values = "(";
+      $count = 1;
+      foreach ($assoArray as $key => $value) {
+          if ($count != count($assoArray)) {
+            $row .= $key . ",";
+            array_push($val, $value);
+            $values .= "?,";
+            $count += 1;
+          }
+          else {
+            $row .= $key;
+            array_push($val, $value);
+            $values .= "?";
+          }
+
+      }
+      $row .= ")";
+      $values .= ")";
+      $request .= $row . " " . 'VALUES' . " " . $values;
+      $query = $this->getPDO()->prepare($request);
+      $query->execute($val);
+    }
+
+    // Otherwise you get back an error message that is displayed
+    else {
+      echo "<article class='errorMessage'>" . $assoArray . "<article>";
+    }
+
+  }
 
 // Function to check the file and register it if it is OK
 // You need to specify the type of fille in your form respecting this pattern : "file/pathproperty"
@@ -66,11 +109,11 @@ public function fileRegister() {
     $size = $_FILES[key($_FILES)]["size"];
 
     if (isset($_POST["alt"])) {
-      $this->insertInto($fileGroup, ["name"=>$name, "type"=>$type, "path"=>$this->$pathMethode() . $name, "size"=>$size, "alt"=>$_POST["alt"]]);
+      $this->insertFile($fileGroup, ["name"=>$name, "type"=>$type, "path"=>$this->$pathMethode() . $name, "size"=>$size, "alt"=>$_POST["alt"]]);
       move_uploaded_file($tmpname, $this->$pathMethode() . $name);
     }
     else {
-      $this->insertInto($fileGroup, ["name"=>$name, "type"=>$type, "path"=>$this->$pathMethode() . $name, "size"=>$size, "alt"=>$name]);
+      $this->insertFile($fileGroup, ["name"=>$name, "type"=>$type, "path"=>$this->$pathMethode() . $name, "size"=>$size, "alt"=>$name]);
       move_uploaded_file($tmpname, $this->$pathMethode() . $name);
     }
   }
