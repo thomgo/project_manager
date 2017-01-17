@@ -138,6 +138,7 @@ use  Validator;
       $request .= $row . " " . 'VALUES' . " " . $values;
       $query = $this->getPDO()->prepare($request);
       $query->execute($val);
+      return true;
     }
 
     // Otherwise you get back an error message that is displayed

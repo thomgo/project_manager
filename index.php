@@ -28,13 +28,16 @@ $data = $dataManager->simpleJoin(["client"=>"id", "projects"=>"client_id"]);
 //
 // $userManager->logButton("index.php");
 
-if (!empty($_POST)) {
-  if (!empty($_FILES)) {
-    $fileManager->fileRegister();
-  }
-  $dataManager->insertInto("client", $_POST);
-}
-
+// if (!empty($_POST)) {
+//   if (!empty($_FILES)) {
+//     $test = $fileManager->fileRegister();
+//   }
+//   $test2 = $dataManager->insertInto("client", $_POST);
+//   if ($test || $test2) {
+//     $fileManager->binTables();
+//   }
+// }
+$fileManager->binTables("client", "sample", "client_id");
 
 include "view/indexView.php";
 

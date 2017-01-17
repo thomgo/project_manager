@@ -116,11 +116,31 @@ public function fileRegister() {
       $this->insertFile($fileGroup, ["name"=>$name, "type"=>$type, "path"=>$this->$pathMethode() . $name, "size"=>$size, "alt"=>$name]);
       move_uploaded_file($tmpname, $this->$pathMethode() . $name);
     }
+    return true;
   }
 // If an error has been detected earlier it displays the error message
   else  {
     echo $fileError;
   }
+}
+
+// function to have a common key between a file and an other entity
+//take an associative array with two entries, the table and the related key
+
+public function binTables($firstTable, $secondTable, $key) {
+
+  // get the last insert row in the first table
+  $request = 'SELECT * FROM' . " " . $firstTable . " " . 'ORDER BY id DESC LIMIT 0, 1';
+  $firstEntity = $this->getPDO()->query($request);
+  $firstEntity = $firstEntity->fetch(PDO::FETCH_ASSOC);
+
+  // get the last insert row in the second table
+  $request = 'SELECT * FROM' . " " . $secondTable . " " . 'ORDER BY id DESC LIMIT 0, 1';
+  $secondEntity = $this->getPDO()->query($request);
+  $secondEntity = $secondEntity->fetch(PDO::FETCH_ASSOC);
+
+  // Use the data manager to update the tables and bind them
+  $this->updateTable($secondTable, [$key=>$firstEntity["id"], "id"=>$secondEntity["id"]]);
 }
 
 // Function to display the image in the view
