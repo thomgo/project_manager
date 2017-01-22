@@ -13,7 +13,7 @@ include "header.php";
 
 <?php
 $form->formStart("index.php");
-$form->textInput("name", "nom du client", "required");
+$form->textInput("firstname", "nom du client", "required");
 $form->numberInput("age", "age du client");
 $form->maxFileSize("2000000");
 $form->fileInput("file/sample", "Votre fichier", "required", true);
@@ -22,7 +22,7 @@ $form->formEnd();
  ?>
 
   <?php
-  $fileManager->img($image);
+  // $fileManager->img($image);
    ?>
 
 

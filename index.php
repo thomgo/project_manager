@@ -12,13 +12,25 @@ $fileManager = new fileManager;
 $file = $dataManager->getWhere("sample", ["name"=>"background.jpg"]);
 $image = new File($file);
 
-$data = $dataManager->simpleJoin(["client"=>"id", "projects"=>"client_id"]);
+$data = $dataManager->simpleJoin(["client"=>"id", "sample"=>"client_id"]);
+// var_dump($data);
+// $client = new Client($data[0]);
+// echo $client->getId();
+// $img = new File($data[0]);
+// echo $img->getName();
+
 // foreach ($data as $key => $projects) {
 //   $project = new Project($projects);
-//   echo $project->getTitle();
+//   $client = new Client($project);
+//   echo "<p>" . $project->getTitle() . "</p>";
+//   echo "<p>" . $client->getName() . "</p>";
+//
 // }
+
 // foreach ($data as $key => $value) {
-//   echo "<p>Le client " . $value['name'] . " est acteur du projet " . $value['title'] . "</p>";
+//   $client = new Client($data[$key]);
+//   $img = new File($data[$key]);
+//   echo "<p>" . $client->getFirstname() . " " . $img->getName() . "</p>";
 // }
 
 // $userManager->newSession($user);
@@ -28,16 +40,13 @@ $data = $dataManager->simpleJoin(["client"=>"id", "projects"=>"client_id"]);
 //
 // $userManager->logButton("index.php");
 
-// if (!empty($_POST)) {
-//   if (!empty($_FILES)) {
-//     $test = $fileManager->fileRegister();
-//   }
-//   $test2 = $dataManager->insertInto("client", $_POST);
-//   if ($test || $test2) {
-//     $fileManager->binTables();
-//   }
-// }
-$fileManager->binTables("client", "sample", "client_id");
+if (!empty($_POST)) {
+  if (!empty($_FILES)) {
+  if ( $fileManager->fileRegister() || $dataManager->insertInto("client", $_POST)) {
+    $fileManager->binTables("client", "sample", "client_id");
+  }
+ }
+}
 
 include "view/indexView.php";
 

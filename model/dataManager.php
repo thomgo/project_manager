@@ -66,10 +66,9 @@ use  Validator;
       array_push($tables, $key);
       array_push($values, $value);
     }
-      $request = 'SELECT * FROM ' . $tables[0] . " AS one, " . $tables[1] . " AS two WHERE one." . $values[0] . " = two." . $values[1];
-    // var_dump($request);
-    $request = "SELECT * FROM projects AS one, client AS two WHERE one.client_id = two.id";
-    $query = $this->getPDO()->query($request);
+    $request = 'SELECT * FROM ' . $tables[1] . " AS one, " . $tables[0] . " AS two WHERE one." . $values[1] . " = two." . $values[0];
+    $req = 'SELECT * FROM client c INNER JOIN sample s ON s.client_id = c.id';
+    $query = $this->getPDO()->query($req);
     $query = $query->fetchAll(PDO::FETCH_ASSOC);
     return $query;
   }
@@ -137,8 +136,12 @@ use  Validator;
       $values .= ")";
       $request .= $row . " " . 'VALUES' . " " . $values;
       $query = $this->getPDO()->prepare($request);
-      $query->execute($val);
-      return true;
+      if ($query->execute($val)) {
+        return true;
+      }
+      else {
+        return false;
+      }
     }
 
     // Otherwise you get back an error message that is displayed

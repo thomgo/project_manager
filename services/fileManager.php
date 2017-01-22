@@ -54,7 +54,13 @@ public function getSample(){
       $values .= ")";
       $request .= $row . " " . 'VALUES' . " " . $values;
       $query = $this->getPDO()->prepare($request);
-      $query->execute($val);
+
+      if ($query->execute($val)) {
+        return true;
+      }
+      else {
+        return false;
+      }
     }
 
     // Otherwise you get back an error message that is displayed
@@ -116,7 +122,6 @@ public function fileRegister() {
       $this->insertFile($fileGroup, ["name"=>$name, "type"=>$type, "path"=>$this->$pathMethode() . $name, "size"=>$size, "alt"=>$name]);
       move_uploaded_file($tmpname, $this->$pathMethode() . $name);
     }
-    return true;
   }
 // If an error has been detected earlier it displays the error message
   else  {
