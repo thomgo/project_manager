@@ -12,6 +12,12 @@ $fileManager = new fileManager;
 
 // The code logic
 
+$projectList = $dataManager->getAll("list");
+
+if (isset($_POST["name"])) {
+  $dataManager->insertInto("list", $_POST);
+}
+
 // Include the view
 include "view/projectView.php";
 

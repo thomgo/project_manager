@@ -7,7 +7,19 @@ include "header.php";
 include "menu.php";
 ?>
 
-<p>
-  Voici la page des projets
-</p>
+
+<?php
+
+foreach ($projectList as $key => $value) {
+  $project = new Liste($value);
+  echo $project->getName();
+}
+
+$form->formStart("project.php");
+$form->textInput("name","Votre projet", "required");
+$form->submitButton("Ajouter un projet");
+$form->formEnd();
+
+ ?>
+
 <?php include "footer.php"; ?>
