@@ -1,5 +1,5 @@
 <nav>
-  <ul class="nav flex-column">
+  <ul class="nav nav-tabs">
     <li class="nav-item">
       <a class="nav-link active" href="index.php">Accueil</a>
     </li>
