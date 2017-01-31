@@ -13,6 +13,8 @@ class Liste {
 
   // I strongly recommand you make this attribute case sensitive in MySql setting its attribute to Binary
   private $name;
+  private $description;
+  private $dueDate;
 
   // Setters
 
@@ -26,6 +28,15 @@ class Liste {
     $this->name = $name;
   }
 
+  public function setDescription($description)
+  {
+    $this->description = $description;
+  }
+
+  public function setDueDate($dueDate)
+  {
+    $this->dueDate = $dueDate;
+  }
   //Getters
 
   public function getId() {
@@ -34,6 +45,14 @@ class Liste {
 
   public function getName() {
     return $this->name;
+  }
+
+  public function getDescription() {
+    return $this->description;
+  }
+
+  public function getDueDate() {
+    return $this->dueDate;
   }
 
   function __construct(array $donnees)

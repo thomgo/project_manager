@@ -55,6 +55,15 @@ class Form {
     }
   }
 
+  public function dateInput($name, $label, $required=false) {
+    if ($required && $required = "Required" || "required") {
+      echo '<label>' . $label . '<input type="date" name=' . $name . ' required ></label>';
+    }
+    else {
+      echo '<label>' . $label . '<input type="date" name=' . $name . '></label>';
+    }
+  }
+
   public function radioInput($name, $label, $array, $required=false) {
     if ($required && $required = "Required" || "required") {
       echo '<label>' . $label;
