@@ -1,7 +1,7 @@
 <?php
 
-$pageTitle = "Les projets";
-$pageDescription = "Vous pouvez gérer tous vos projets sur cette page";
+$pageTitle = "Archives";
+$pageDescription = "Voyez en un coup d'oeil tous les projest que vous avez terminés";
 
 include "header.php";
 include "menu.php";
@@ -27,7 +27,7 @@ include "menu.php";
       <!-- Loop start to display each project in a card -->
       <?php
       if (empty($projectList)) {
-        echo "<p>Vous n'avez aucun projet d'enregistré pour l'instant</p>";
+        echo "<p>Vous n'avez aucun projet d'archivé pour l'instant</p>";
       }
       else {
       foreach ($projectList as $value) {
@@ -39,9 +39,9 @@ include "menu.php";
 
             <!-- Form to send the project to the archive -->
             <?php
-            $form->formStart("project.php");
-            $form->hiddenInput("archiveProject", $project->getId());
-            $form->submitButton("Archiver");
+            $form->formStart("archive.php");
+            $form->hiddenInput("deleteProject", $project->getId());
+            $form->submitButton("Supprimer");
             $form->formEnd();
              ?>
 
