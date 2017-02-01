@@ -15,6 +15,8 @@ class Liste {
   private $name;
   private $description;
   private $dueDate;
+  //A boolean, if true the project is in the archive
+  private $status;
 
   // Setters
 
@@ -37,6 +39,12 @@ class Liste {
   {
     $this->dueDate = $dueDate;
   }
+
+  public function setStatus($status)
+  {
+    $this->status = $status;
+  }
+
   //Getters
 
   public function getId() {
@@ -53,6 +61,10 @@ class Liste {
 
   public function getDueDate() {
     return $this->dueDate;
+  }
+
+  public function getStatus() {
+    return $this->status;
   }
 
   function __construct(array $donnees)

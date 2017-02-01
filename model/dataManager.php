@@ -25,6 +25,19 @@ use  Validator;
     return $query;
   }
 
+  // Get the data from a specific table with one condition like WHERE name="sample"
+    public function getOneWhere($table, $assoArray) {
+      foreach ($assoArray as $key => $value) {
+        $parameter = $key;
+        $val = $value;
+      }
+      $request = 'SELECT * FROM' . " " . $table . " " . 'WHERE ' . " " . $parameter . '= ?';
+      $query = $this->getPDO()->prepare($request);
+      $query->execute(array($val));
+      $query = $query->fetch(PDO::FETCH_ASSOC);
+      return $query;
+    }
+
 // Get the data from a specific table with one condition like WHERE name="sample"
   public function getWhere($table, $assoArray) {
     foreach ($assoArray as $key => $value) {
@@ -34,7 +47,7 @@ use  Validator;
     $request = 'SELECT * FROM' . " " . $table . " " . 'WHERE ' . " " . $parameter . '= ?';
     $query = $this->getPDO()->prepare($request);
     $query->execute(array($val));
-    $query = $query->fetch(PDO::FETCH_ASSOC);
+    $query = $query->fetchAll(PDO::FETCH_ASSOC);
     return $query;
   }
 
