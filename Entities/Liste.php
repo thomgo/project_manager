@@ -37,6 +37,7 @@ class Liste {
 
   public function setDueDate($dueDate)
   {
+    $dueDate = date_format(date_create($dueDate), 'd-m-Y');
     $this->dueDate = $dueDate;
   }
 
