@@ -26,6 +26,12 @@ include "menu.php";
     <section class="col-xs-12 col-md-9">
       <!-- Loop start to display each project in a card -->
       <?php
+
+      $form->formStart("archive.php");
+      $form->hiddenInput("deleteAll", "0");
+      $form->submitButton("Toutsupprimer");
+      $form->formEnd();
+
       if (empty($projectList)) {
         echo "<p>Vous n'avez aucun projet d'archivé pour l'instant</p>";
       }

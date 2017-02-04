@@ -19,6 +19,11 @@ if (isset($_POST["deleteProject"])) {
   header("Refresh:0");
 }
 
+if (isset($_POST["deleteAll"])) {
+  $dataManager->deleteWhere("list", ["status"=>1]);
+  header("Refresh:0");
+}
+
 // Include the view
 include "view/archiveView.php";
 
