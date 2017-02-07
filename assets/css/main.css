@@ -107,9 +107,15 @@ nav {
   margin-bottom: 2em;
 }
 
-nav, nav a {
+nav, nav a, .darkgreen-btn, form input[type=submit] {
   background-color: #32a287;
   color: white;
+}
+
+form input[type=submit] {
+ border: none;
+ border-radius: 3px;
+ padding: .4em;
 }
 
 .card-header form {

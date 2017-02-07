@@ -29,13 +29,14 @@ include "menu.php";
       if (empty($projectList)) {
         echo "<p>Vous n'avez aucun projet d'enregistré pour l'instant</p>";
       }
+
       else {
       foreach ($projectList as $value) {
         $project = new Liste($value);
         ?>
         <article class="card">
           <div class="card-header">
-            Deadline fixée au : <?php echo $project->getDueDate(); ?>
+            Deadline fixée au : <?php echo "<span>" . $project->getDueDate() . "</span>"; ?>
 
             <!-- Form to send the project to the archive -->
             <?php
@@ -49,7 +50,7 @@ include "menu.php";
           <div class="card-block">
             <h4 class="card-title"><?php echo $project->getName(); ?></h4>
             <p class="card-text"><?php echo $project->getDescription() ?></p>
-            <a href="#" class="btn btn-success">Voir</a>
+            <a href="#" class="btn darkgreen-btn">Voir</a>
           </div>
         </article>
         <?php

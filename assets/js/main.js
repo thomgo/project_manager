@@ -1,3 +1,5 @@
+// Style the format of the calendar in the date input
+
 $(function() {
 $( "input[type='date']" ).datepicker({
 altField: "#datepicker",
@@ -13,4 +15,34 @@ dayNamesMin: ['D', 'L', 'M', 'M', 'J', 'V', 'S'],
 weekHeader: 'Sem.',
 dateFormat: 'yy-mm-dd'
 });
+});
+
+// Get the current date
+var currentDate = new Date();
+currentDate = currentDate.getTime();
+
+// Date calculation to display the appropriate classe in the project head
+$(".card-header span").each(function() {
+  var dueDate = $(this).text();
+  var dateStore = dueDate.split("-");
+  dateStore.unshift(dateStore[1]);
+  dateStore.splice(2, 1);
+  dueDate = dateStore.join("/");
+  dueDate = new Date(dueDate);
+  dueDate = dueDate.getTime();
+
+  var timeLeft = ((dueDate - currentDate)/(1000*60*60*24)) + 1;
+  var dayLeft = Math.round(timeLeft);
+
+  $(this).append(" | " + dayLeft + " jours restants");
+
+  if (dayLeft <= 7) {
+    $(this).parent().addClass("bg-danger text-white");
+  }
+  else if (dayLeft > 7 && dayLeft <= 30) {
+    $(this).parent().addClass("bg-warning text-white");
+  }
+  else {
+    $(this).parent().addClass("bg-success text-white");
+  }
 });

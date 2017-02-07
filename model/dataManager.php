@@ -39,12 +39,20 @@ use  Validator;
     }
 
 // Get the data from a specific table with one condition like WHERE name="sample"
-  public function getWhere($table, $assoArray) {
+  public function getWhere($table, $assoArray, $speArray = false) {
     foreach ($assoArray as $key => $value) {
       $parameter = $key;
       $val = $value;
     }
     $request = 'SELECT * FROM' . " " . $table . " " . 'WHERE ' . " " . $parameter . '= ?';
+    if ($speArray == true) {
+      foreach ($speArray as $key => $value) {
+        if ($key === "order") {
+          $request .= "ORDER BY " . $value;
+        }
+      }
+
+    }
     $query = $this->getPDO()->prepare($request);
     $query->execute(array($val));
     $query = $query->fetchAll(PDO::FETCH_ASSOC);

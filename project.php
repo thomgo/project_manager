@@ -12,7 +12,7 @@ $fileManager = new fileManager;
 
 // The code logic
 
-$projectList = $dataManager->getWhere("list", ["status"=>"0"]);
+$projectList = $dataManager->getWhere("list", ["status"=>"0"], ["order"=>"dueDate"]);
 
 if (isset($_POST["name"])) {
   $dataManager->insertInto("list", $_POST);
