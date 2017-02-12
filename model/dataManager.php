@@ -45,14 +45,24 @@ use  Validator;
       $val = $value;
     }
     $request = 'SELECT * FROM' . " " . $table . " " . 'WHERE ' . " " . $parameter . '= ?';
+
     if ($speArray == true) {
       foreach ($speArray as $key => $value) {
         if ($key === "order") {
-          $request .= "ORDER BY " . $value;
+          $request .= " ORDER BY " . $value;
+        }
+        elseif (is_int($key) && is_int($value)) {
+          if ($key === 0) {
+            $request .= " LIMIT " . $value;
+          }
+          else {
+            $request .= " LIMIT " . $value . ", " . $key;
+          }
+
         }
       }
-
     }
+
     $query = $this->getPDO()->prepare($request);
     $query->execute(array($val));
     $query = $query->fetchAll(PDO::FETCH_ASSOC);

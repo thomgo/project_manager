@@ -23,19 +23,28 @@ currentDate = currentDate.getTime();
 
 // Date calculation to display the appropriate classe in the project head
 $(".card-header span").each(function() {
+  // get the date from the HTML and turn in js format with /
   var dueDate = $(this).text();
   var dateStore = dueDate.split("-");
   dateStore.unshift(dateStore[1]);
   dateStore.splice(2, 1);
   dueDate = dateStore.join("/");
+
+  // Create new date and get the number of ms
   dueDate = new Date(dueDate);
   dueDate = dueDate.getTime();
 
   var timeLeft = ((dueDate - currentDate)/(1000*60*60*24)) + 1;
   var dayLeft = Math.round(timeLeft);
 
-  $(this).append(" | " + dayLeft + " jours restants");
+  if (dayLeft <= 0 ) {
+      $(this).append(" |  date de rendu atteinte");
+  }
+  else {
+      $(this).append(" | " + dayLeft + " jours restants");
+  }
 
+// Change the card header color according to the number of days left
   if (dayLeft <= 7) {
     $(this).parent().addClass("bg-danger text-white");
   }
