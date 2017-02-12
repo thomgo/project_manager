@@ -50,7 +50,7 @@ include "menu.php";
           <div class="card-block">
             <h4 class="card-title"><?php echo $project->getName(); ?></h4>
             <p class="card-text"><?php echo $project->getDescription() ?></p>
-            <a href="#" class="btn darkgreen-btn">Voir</a>
+            <a <?php echo "href='single.php?id=" . $project->getId() . "&name=" . $project->getName() . "'" ?> class="btn darkgreen-btn">Voir</a>
           </div>
         </article>
         <?php
