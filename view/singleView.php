@@ -24,15 +24,43 @@ include "menu.php";
 
  <!-- Main section containing the project list -->
      <section class="col-xs-12 col-md-9">
+      <div class="row">
       <?php
 
         foreach ($stepList as $value) {
           $step = new Step($value);
-          echo $step->getName();
+        ?>
+        <div class="col-xs-12 col-md-6">
+          <article class="card" style="width: 25rem;">
+             <div class="card-block">
+               <h4 class="card-title"><?php echo $step->getName(); ?></h4>
+               Deadline fixée au : <?php echo "<span class='dueDate'>" . $step->getDueDate() . "</span>"; ?>
+             </div>
+             <div class="card-block">
+               <p class="card-text"><?php echo $step->getDescription(); ?></p>
+             </div>
+             <ul class="list-group list-group-flush">
+               <li class="list-group-item">Cras justo odio</li>
+               <li class="list-group-item">Dapibus ac facilisis in</li>
+               <li class="list-group-item">Vestibulum at eros</li>
+             </ul>
+             <div class="card-block">
+               <?php
+               $form->formStart("single.php?id=" . $project->getId() . "&name=" . $project->getName());
+               $form->hiddenInput("stepId", $step->getId());
+               $form->textInput("name","", "required");
+               $form->submitButton("Ajouter");
+               $form->formEnd();
+                ?>
+             </div>
+           </article>
+       </div>
+        <?php
         }
-
        ?>
-     </section>
+     </div>
+
+   </section>
 
      </div>
    </div>

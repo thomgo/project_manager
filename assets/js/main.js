@@ -22,7 +22,7 @@ var currentDate = new Date();
 currentDate = currentDate.getTime();
 
 // Date calculation to display the appropriate classe in the project head
-$(".card-header span").each(function() {
+$(".dueDate").each(function() {
   // get the date from the HTML and turn in js format with /
   var dueDate = $(this).text();
   var dateStore = dueDate.split("-");

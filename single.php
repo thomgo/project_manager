@@ -22,6 +22,11 @@ if (isset($_POST["projectId"])) {
   header("Refresh:0");
 }
 
+if (isset($_POST["stepId"])) {
+  $dataManager->insertInto("action", $_POST);
+  header("Refresh:0");
+}
+
 // Include the view
 include "view/singleView.php";
 

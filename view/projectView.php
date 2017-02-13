@@ -36,7 +36,7 @@ include "menu.php";
         ?>
         <article class="card">
           <div class="card-header">
-            Deadline fixée au : <?php echo "<span>" . $project->getDueDate() . "</span>"; ?>
+            Deadline fixée au : <?php echo "<span class='dueDate'>" . $project->getDueDate() . "</span>"; ?>
 
             <!-- Form to send the project to the archive -->
             <?php
