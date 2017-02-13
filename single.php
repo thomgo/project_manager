@@ -15,6 +15,13 @@ $fileManager = new fileManager;
 $project = $dataManager->getOneWhere("list", ["id"=>$_GET["id"]]);
 $project = new Liste($project);
 
+$stepList = $dataManager->getWhere("step", ["projectId"=>$_GET["id"]]);
+
+if (isset($_POST["projectId"])) {
+  $dataManager->insertInto("step", $_POST);
+  header("Refresh:0");
+}
+
 // Include the view
 include "view/singleView.php";
 
