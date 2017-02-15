@@ -1,7 +1,7 @@
 <?php
 
 $pageTitle = "Archives";
-$pageDescription = "Voyez en un coup d'oeil tous les projest que vous avez terminés";
+$pageDescription = "Voyez en un coup d'oeil tous les projets que vous avez terminés";
 
 include "header.php";
 include "menu.php";
@@ -27,14 +27,17 @@ include "menu.php";
       <!-- Loop start to display each project in a card -->
       <?php
 
+      // Form to delete all the projects
       $form->formStart("archive.php");
       $form->hiddenInput("deleteAll", "0");
       $form->submitButton("Toutsupprimer");
       $form->formEnd();
 
+      // If no archived projects shows a message
       if (empty($projectList)) {
         echo "<p>Vous n'avez aucun projet d'archivé pour l'instant</p>";
       }
+      // Otherwise foreach the archives projects list and show them in cards
       else {
       foreach ($projectList as $value) {
         $project = new Liste($value);
@@ -43,7 +46,7 @@ include "menu.php";
           <div class="card-header">
             Deadline fixée au : <?php echo date($project->getDueDate()); ?>
 
-            <!-- Form to send the project to the archive -->
+            <!-- Form to delete the project -->
             <?php
             $form->formStart("archive.php");
             $form->hiddenInput("deleteProject", $project->getId());
@@ -59,6 +62,7 @@ include "menu.php";
           </div>
         </article>
         <?php
+        // End of the loop
         }
       }
        ?>

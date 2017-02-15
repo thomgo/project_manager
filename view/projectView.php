@@ -26,10 +26,11 @@ include "menu.php";
     <section class="col-xs-12 col-md-9">
       <!-- Loop start to display each project in a card -->
       <?php
+      // Message if the loop is empty
       if (empty($projectList)) {
         echo "<p>Vous n'avez aucun projet d'enregistré pour l'instant</p>";
       }
-
+      // Otherwise foreach the list of project and display them
       else {
       foreach ($projectList as $value) {
         $project = new Liste($value);
@@ -54,6 +55,7 @@ include "menu.php";
           </div>
         </article>
         <?php
+        // End of the loop
         }
       }
        ?>

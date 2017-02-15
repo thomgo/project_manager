@@ -26,7 +26,12 @@ include "menu.php";
      <section class="col-xs-12 col-md-9">
       <div class="row">
       <?php
-
+        // Message if the loop is empty
+        if (empty($stepList)) {
+          echo "<p>Vous n'avez aucune étape d'enregistrée pour l'instant</p>";
+        }
+        // Otherwise foreach the list of steps and display them in cards
+        else {
         foreach ($stepList as $value) {
           $step = new Step($value);
         ?>
@@ -57,6 +62,7 @@ include "menu.php";
        </div>
         <?php
         }
+      }
        ?>
      </div>
 
