@@ -17,6 +17,12 @@ $project = new Liste($project);
 
 $stepList = $dataManager->getWhere("step", ["projectId"=>$_GET["id"]]);
 
+$test = $dataManager->simpleJoin(["step"=>"id", "action"=>"stepId"], ["S.projectId"=>57]);
+
+foreach ($test as $key => $value) {
+  echo "<p>" . var_dump($value) ."</p>";
+}
+
 if (isset($_POST["projectId"])) {
   $dataManager->insertInto("step", $_POST);
   header("Refresh:0");

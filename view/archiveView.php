@@ -30,7 +30,7 @@ include "menu.php";
       // Form to delete all the projects
       $form->formStart("archive.php");
       $form->hiddenInput("deleteAll", "0");
-      $form->submitButton("Toutsupprimer");
+      $form->submitButton("Tout supprimer");
       $form->formEnd();
 
       // If no archived projects shows a message

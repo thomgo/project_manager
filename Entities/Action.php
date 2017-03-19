@@ -42,7 +42,7 @@ class Action {
   }
 
   public function getStepId() {
-    return $this->stepId;
+    return $this->ste;
   }
 
   function __construct(array $donnees)

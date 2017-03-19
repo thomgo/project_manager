@@ -203,7 +203,7 @@ class Form {
 // Function to display a submit button, the value (string type) is what appears on the button
 
   public function submitButton($value) {
-    echo '<input type="submit" value= ' . $value .'>';
+    echo '<input type="submit" value="' . $value .'">';
   }
 
 // Function to display the closing form tag

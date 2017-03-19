@@ -90,17 +90,27 @@ use  Validator;
 
   // get the data from two join table. Pass an associative array with the table and the related key as string
   // for exemple simpleJoin(["client"=>"id", "projects"=>"client_id"])
-  public function simpleJoin($assoArray) {
+  public function simpleJoin($assoArray, $clause=false) {
     $tables = [];
     $values = [];
     foreach ($assoArray as $key => $value) {
       array_push($tables, $key);
       array_push($values, $value);
     }
-    $request = 'SELECT * FROM ' . $tables[1] . " AS one, " . $tables[0] . " AS two WHERE one." . $values[1] . " = two." . $values[0];
-    $req = 'SELECT * FROM client c INNER JOIN sample s ON s.client_id = c.id';
-    $query = $this->getPDO()->query($req);
-    $query = $query->fetchAll(PDO::FETCH_ASSOC);
+
+    $allias1 = strtoupper(substr($tables[0],0 , 1));
+    $allias2 = strtoupper(substr($tables[1],0 , 1));
+    
+    $request = 'SELECT * FROM ' . $tables[1] . " AS " . $allias2 . " LEFT JOIN " . $tables[0] . " AS ". $allias1 . " ON " . $allias2 . "." . $values[1] . " = " . $allias1 . "." . $values[0];
+    // $request = "SELECT * FROM action AS A LEFT JOIN step AS S ON S.id = A.stepId WHERE S.projectId='57'";
+    if ($clause) {
+      foreach ($clause as $key => $value) {
+        $request .= " WHERE " . $key . "=" . $value;
+      }
+    }
+
+    $query = $this->getPDO()->query($request);
+    $query = $query->fetchAll();
     return $query;
   }
 
