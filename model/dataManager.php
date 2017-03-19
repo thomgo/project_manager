@@ -90,7 +90,9 @@ use  Validator;
 
   // get the data from two join table. Pass an associative array with the table and the related key as string
   // for exemple simpleJoin(["client"=>"id", "projects"=>"client_id"])
-  public function simpleJoin($assoArray, $clause=false) {
+  public function simpleJoin($assoArray, $joinType, $clause=false) {
+
+    // Store the tables and row names in arrays
     $tables = [];
     $values = [];
     foreach ($assoArray as $key => $value) {
@@ -98,11 +100,16 @@ use  Validator;
       array_push($values, $value);
     }
 
+    // Define the join type and the aliasses
+    $joinType = strtoupper($joinType);
     $allias1 = strtoupper(substr($tables[0],0 , 1));
     $allias2 = strtoupper(substr($tables[1],0 , 1));
-    
-    $request = 'SELECT * FROM ' . $tables[1] . " AS " . $allias2 . " LEFT JOIN " . $tables[0] . " AS ". $allias1 . " ON " . $allias2 . "." . $values[1] . " = " . $allias1 . "." . $values[0];
+
+    // Make the base request
+    $request = 'SELECT * FROM ' . $tables[1] . " AS " . $allias2 . " " . $joinType. " JOIN " . $tables[0] . " AS ". $allias1 . " ON " . $allias2 . "." . $values[1] . " = " . $allias1 . "." . $values[0];
     // $request = "SELECT * FROM action AS A LEFT JOIN step AS S ON S.id = A.stepId WHERE S.projectId='57'";
+
+    // if there is a where clause it is added here
     if ($clause) {
       foreach ($clause as $key => $value) {
         $request .= " WHERE " . $key . "=" . $value;

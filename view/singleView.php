@@ -32,8 +32,7 @@ include "menu.php";
         }
         // Otherwise foreach the list of steps and display them in cards
         else {
-        foreach ($stepList as $value) {
-          $step = new Step($value);
+        foreach ($stepList as $step) {
         ?>
         <div class="col-xs-12 col-md-6">
           <article class="card" style="width: 25rem;">
