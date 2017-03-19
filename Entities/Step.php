@@ -17,6 +17,7 @@ class Step {
   private $dueDate;
   //A boolean, if true the project is in the archive
   private $status;
+  private $actions=[];
   private $projectId;
   // Setters
 
@@ -46,6 +47,11 @@ class Step {
     $this->status = $status;
   }
 
+  public function setActions($actions)
+  {
+    $this->actions = $actions;
+  }
+
   public function setProjectId($projectId)
   {
     $this->projectId = $projectId;
@@ -71,6 +77,10 @@ class Step {
 
   public function getStatus() {
     return $this->status;
+  }
+
+  public function getActions() {
+    return $this->actions;
   }
 
   public function getProjectId() {

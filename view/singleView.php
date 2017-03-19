@@ -44,9 +44,12 @@ include "menu.php";
                <p class="card-text"><?php echo $step->getDescription(); ?></p>
              </div>
              <ul class="list-group list-group-flush">
-               <li class="list-group-item">Cras justo odio</li>
-               <li class="list-group-item">Dapibus ac facilisis in</li>
-               <li class="list-group-item">Vestibulum at eros</li>
+               <!-- Loop on the actions array to display the action to do -->
+               <?php
+                  foreach ($step->getActions() as $value) {
+                    echo "<li class='list-group-item'>" . $value["name"] . "</li>";
+                  }
+                ?>
              </ul>
              <div class="card-block">
                <?php

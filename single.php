@@ -19,6 +19,7 @@ $stepList = $dataManager->getWhere("step", ["projectId"=>$_GET["id"]]);
 
 foreach ($stepList as $key=>$value) {
   $stepList[$key] = new Step($value);
+  $stepList[$key]->setActions($dataManager->getWhere("action", ["stepId"=>$stepList[$key]->getId()]));
 }
 
 // Join test
