@@ -17,6 +17,7 @@ $project = new Liste($project);
 
 $stepList = $dataManager->getWhere("step", ["projectId"=>$_GET["id"]]);
 
+// Loop through the steps and get the associated actions for each step
 foreach ($stepList as $key=>$value) {
   $stepList[$key] = new Step($value);
   $stepList[$key]->setActions($dataManager->getWhere("action", ["stepId"=>$stepList[$key]->getId()]));

@@ -55,3 +55,10 @@ $(".dueDate").each(function() {
     $(this).parent().addClass("bg-success text-white");
   }
 });
+
+
+// Ajax request to update the action status
+
+function ajaxActionUpdate() {
+  alert("test");
+}

@@ -47,7 +47,7 @@ include "menu.php";
                <!-- Loop on the actions array to display the action to do -->
                <?php
                   foreach ($step->getActions() as $value) {
-                    echo "<li class='list-group-item'>" . $value["name"] . "</li>";
+                    echo "<li class='list-group-item'>" . $value["name"] . "<button type='button' name='button' class='btn btn-success' onclick='ajaxActionUpdate()'>Fait</button></li>";
                   }
                 ?>
              </ul>

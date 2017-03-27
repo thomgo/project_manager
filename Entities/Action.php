@@ -13,6 +13,7 @@ class Action {
 
   // I strongly recommand you make this attribute case sensitive in MySql setting its attribute to Binary
   private $name;
+  private $status;
   private $stepId;
   // Setters
 
@@ -25,6 +26,12 @@ class Action {
   {
     $this->name = $name;
   }
+
+  public function setStatus($status)
+  {
+    $this->status = $status;
+  }
+
 
   public function setStepId($stepId)
   {
@@ -41,8 +48,12 @@ class Action {
     return $this->name;
   }
 
+  public function getStatus() {
+    return $this->status;
+  }
+
   public function getStepId() {
-    return $this->ste;
+    return $this->stepId;
   }
 
   function __construct(array $donnees)
