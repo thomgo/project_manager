@@ -58,7 +58,14 @@ $(".dueDate").each(function() {
 
 
 // Ajax request to update the action status
+function ajaxActionUpdate(a) {
+  var xmlhttp = new XMLHttpRequest();
+        xmlhttp.open("GET", "ajax.php?action=" + a, true);
+        xmlhttp.send();
+    }
 
-function ajaxActionUpdate() {
-  alert("test");
-}
+// On click get the name of the action and start the ajax request
+$(".ajaxDone").click(function() {
+  var name = $(this).parent(".list-group-item").clone().children().remove().end().text();
+  ajaxActionUpdate(name);
+});
