@@ -58,14 +58,31 @@ $(".dueDate").each(function() {
 
 
 // Ajax request to update the action status
-function ajaxActionUpdate(a) {
-  var xmlhttp = new XMLHttpRequest();
-        xmlhttp.open("GET", "ajax.php?action=" + a, true);
+var xmlhttp = new XMLHttpRequest();
+
+function ajaxActionDone(a) {
+        xmlhttp.open("GET", "ajax.php?actionDone=" + a, true);
         xmlhttp.send();
     }
+
+function ajaxActionToDo(a) {
+  xmlhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+          alert(this.responseText);
+      }
+  };
+        xmlhttp.open("GET", "ajax.php?actionToDo=" + a, true);
+        xmlhttp.send();
+    }
+
 
 // On click get the name of the action and start the ajax request
 $(".ajaxDone").click(function() {
   var name = $(this).parent(".list-group-item").clone().children().remove().end().text();
-  ajaxActionUpdate(name);
+  ajaxActionDone(name);
+});
+
+$(".ajaxToDo").click(function() {
+  var name = $(this).parent(".list-group-item").clone().children().remove().end().text();
+  ajaxActionToDo(name);
 });

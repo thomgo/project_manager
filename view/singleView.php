@@ -51,7 +51,7 @@ include "menu.php";
                       echo "<li class='list-group-item'>" . $value["name"] . "<button type='button' name='button' class='btn btn-danger ajaxDone'>A faire</button></li>";
                     }
                     else {
-                      echo "<li class='list-group-item done'>" . $value["name"] . "<button type='button' name='button' class='btn btn-success ajaxDone'>Validé</button></li>";
+                      echo "<li class='list-group-item done'>" . $value["name"] . "<button type='button' name='button' class='btn btn-success ajaxToDo'>Validé</button></li>";
                     }
                   }
                 ?>
