@@ -66,12 +66,14 @@ function ajaxActionDone(a) {
     }
 
 function ajaxActionToDo(a) {
-  xmlhttp.onreadystatechange = function() {
-      if (this.readyState == 4 && this.status == 200) {
-          alert(this.responseText);
-      }
-  };
         xmlhttp.open("GET", "ajax.php?actionToDo=" + a, true);
+
+        xmlhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                return true;
+            }
+        };
+
         xmlhttp.send();
     }
 
@@ -84,5 +86,19 @@ $(".ajaxDone").click(function() {
 
 $(".ajaxToDo").click(function() {
   var name = $(this).parent(".list-group-item").clone().children().remove().end().text();
-  ajaxActionToDo(name);
+  // if(ajaxActionToDo(name)){
+  //   alert("est");
+  // }
+  var currentButton = $(this);
+  xmlhttp.open("GET", "ajax.php?actionToDo=" + name, true);
+
+  xmlhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+          currentButton.removeClass("btn-success").addClass("btn-danger");
+          currentButton.text("A faire");
+          currentButton.parent().removeClass("done");
+      }
+  };
+
+  xmlhttp.send();
 });
