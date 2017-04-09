@@ -60,45 +60,45 @@ $(".dueDate").each(function() {
 // Ajax request to update the action status
 var xmlhttp = new XMLHttpRequest();
 
-function ajaxActionDone(a) {
-        xmlhttp.open("GET", "ajax.php?actionDone=" + a, true);
-        xmlhttp.send();
-    }
-
-function ajaxActionToDo(a) {
-        xmlhttp.open("GET", "ajax.php?actionToDo=" + a, true);
-
-        xmlhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-                return true;
-            }
-        };
-
-        xmlhttp.send();
-    }
-
-
 // On click get the name of the action and start the ajax request
-$(".ajaxDone").click(function() {
-  var name = $(this).parent(".list-group-item").clone().children().remove().end().text();
-  ajaxActionDone(name);
-});
 
-$(".ajaxToDo").click(function() {
-  var name = $(this).parent(".list-group-item").clone().children().remove().end().text();
-  // if(ajaxActionToDo(name)){
-  //   alert("est");
-  // }
-  var currentButton = $(this);
+function ajaxDone(name) {
+  xmlhttp.open("GET", "ajax.php?actionDone=" + name, true);
+
+  xmlhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+          currentButton.removeClass("btn-danger").addClass("btn-success");
+          currentButton.removeClass("ajaxDone").addClass("ajaxToDo");
+          currentButton.text("Validé");
+          currentButton.parent().addClass("done");
+      }
+  };
+  xmlhttp.send();
+}
+
+
+
+function ajaxToDo(name) {
   xmlhttp.open("GET", "ajax.php?actionToDo=" + name, true);
 
   xmlhttp.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
           currentButton.removeClass("btn-success").addClass("btn-danger");
+          currentButton.removeClass("ajaxToDo").addClass("ajaxDone");
           currentButton.text("A faire");
           currentButton.parent().removeClass("done");
       }
   };
-
   xmlhttp.send();
+}
+
+$(".ajax").click(function(){
+  var name = $(this).parent(".list-group-item").clone().children().remove().end().text();
+  var currentButton = $(this);
+  if ($(this).hasClass("ajaxDone")) {
+    ajaxDone(name);
+  }
+  else {
+    ajaxToDo(name);
+  }
 });

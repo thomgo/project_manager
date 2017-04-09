@@ -48,10 +48,10 @@ include "menu.php";
                <?php
                   foreach ($step->getActions() as $value) {
                     if ($value["status"] == 0) {
-                      echo "<li class='list-group-item'>" . $value["name"] . "<button type='button' name='button' class='btn btn-danger ajaxDone'>A faire</button></li>";
+                      echo "<li class='list-group-item'>" . $value["name"] . "<button type='button' name='button' class='ajax btn btn-danger ajaxDone'>A faire</button></li>";
                     }
                     else {
-                      echo "<li class='list-group-item done'>" . $value["name"] . "<button type='button' name='button' class='btn btn-success ajaxToDo'>Validé</button></li>";
+                      echo "<li class='list-group-item done'>" . $value["name"] . "<button type='button' name='button' class='ajax btn btn-success ajaxToDo'>Validé</button></li>";
                     }
                   }
                 ?>
