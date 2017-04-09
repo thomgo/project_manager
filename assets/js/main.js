@@ -62,7 +62,7 @@ var xmlhttp = new XMLHttpRequest();
 
 // On click get the name of the action and start the ajax request
 
-function ajaxDone(name) {
+function ajaxDone(name, currentButton) {
   xmlhttp.open("GET", "ajax.php?actionDone=" + name, true);
 
   xmlhttp.onreadystatechange = function() {
@@ -78,7 +78,7 @@ function ajaxDone(name) {
 
 
 
-function ajaxToDo(name) {
+function ajaxToDo(name, currentButton) {
   xmlhttp.open("GET", "ajax.php?actionToDo=" + name, true);
 
   xmlhttp.onreadystatechange = function() {
@@ -96,9 +96,9 @@ $(".ajax").click(function(){
   var name = $(this).parent(".list-group-item").clone().children().remove().end().text();
   var currentButton = $(this);
   if ($(this).hasClass("ajaxDone")) {
-    ajaxDone(name);
+    ajaxDone(name, currentButton);
   }
   else {
-    ajaxToDo(name);
+    ajaxToDo(name, currentButton);
   }
 });
