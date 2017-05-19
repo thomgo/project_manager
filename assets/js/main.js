@@ -62,33 +62,80 @@ var xmlhttp = new XMLHttpRequest();
 
 // On click get the name of the action and start the ajax request
 
-function ajaxDone(name, currentButton) {
-  xmlhttp.open("GET", "ajax.php?actionDone=" + name, true);
+// function ajaxDone(name, currentButton) {
+//   xmlhttp.open("GET", "ajax.php?actionDone=" + name, true);
+//
+//   xmlhttp.onreadystatechange = function() {
+//       if (this.readyState == 4 && this.status == 200) {
+//           currentButton.removeClass("btn-danger").addClass("btn-success");
+//           currentButton.removeClass("ajaxDone").addClass("ajaxToDo");
+//           currentButton.text("Validé");
+//           currentButton.parent().addClass("done");
+//       }
+//   };
+//   xmlhttp.send();
+// }
+//
+//
+//
+// function ajaxToDo(name, currentButton) {
+//   xmlhttp.open("GET", "ajax.php?actionToDo=" + name, true);
+//
+//   xmlhttp.onreadystatechange = function() {
+//       if (this.readyState == 4 && this.status == 200) {
+//           currentButton.removeClass("btn-success").addClass("btn-danger");
+//           currentButton.removeClass("ajaxToDo").addClass("ajaxDone");
+//           currentButton.text("A faire");
+//           currentButton.parent().removeClass("done");
+//       }
+//   };
+//   xmlhttp.send();
+// }
+//
+// $(".ajax").click(function(){
+//   var name = $(this).parent(".list-group-item").clone().children().remove().end().text();
+//   var currentButton = $(this);
+//   if ($(this).hasClass("ajaxDone")) {
+//     ajaxDone(name, currentButton);
+//   }
+//   else {
+//     ajaxToDo(name, currentButton);
+//   }
+// });
 
-  xmlhttp.onreadystatechange = function() {
-      if (this.readyState == 4 && this.status == 200) {
-          currentButton.removeClass("btn-danger").addClass("btn-success");
-          currentButton.removeClass("ajaxDone").addClass("ajaxToDo");
-          currentButton.text("Validé");
-          currentButton.parent().addClass("done");
-      }
-  };
-  xmlhttp.send();
-}
 
 
+//////////////////////////////////////////
+/////////////////////////////////////////
 
-function ajaxToDo(name, currentButton) {
-  xmlhttp.open("GET", "ajax.php?actionToDo=" + name, true);
+// On click get the name of the action and start the ajax request
 
-  xmlhttp.onreadystatechange = function() {
-      if (this.readyState == 4 && this.status == 200) {
-          currentButton.removeClass("btn-success").addClass("btn-danger");
-          currentButton.removeClass("ajaxToDo").addClass("ajaxDone");
-          currentButton.text("A faire");
-          currentButton.parent().removeClass("done");
-      }
-  };
+
+function ajaxAction(name, currentButton, status) {
+  if (status === true) {
+    xmlhttp.open("GET", "ajax.php?actionDone=" + name, true);
+
+    xmlhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            currentButton.removeClass("btn-danger").addClass("btn-success");
+            currentButton.removeClass("ajaxDone").addClass("ajaxToDo");
+            currentButton.text("Validé");
+            currentButton.parent().addClass("done");
+        }
+    };
+  }
+  else {
+    xmlhttp.open("GET", "ajax.php?actionToDo=" + name, true);
+
+    xmlhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            currentButton.removeClass("btn-success").addClass("btn-danger");
+            currentButton.removeClass("ajaxToDo").addClass("ajaxDone");
+            currentButton.text("A faire");
+            currentButton.parent().removeClass("done");
+        }
+    };
+  }
   xmlhttp.send();
 }
 
@@ -96,9 +143,9 @@ $(".ajax").click(function(){
   var name = $(this).parent(".list-group-item").clone().children().remove().end().text();
   var currentButton = $(this);
   if ($(this).hasClass("ajaxDone")) {
-    ajaxDone(name, currentButton);
+    ajaxAction(name, currentButton, true);
   }
   else {
-    ajaxToDo(name, currentButton);
+    ajaxAction(name, currentButton, false);
   }
 });
